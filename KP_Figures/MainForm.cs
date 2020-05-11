@@ -12,7 +12,7 @@ using Rectangle = Shapes.Rectangle;
 
 namespace KP_Figures
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private List<Shape> shapes = new List<Shape>();
         private List<Shape> selectShapes = new List<Shape>();
@@ -25,7 +25,7 @@ namespace KP_Figures
         private Color lineColor = Color.Black;
         private int lineWidth = 1;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -400,10 +400,11 @@ namespace KP_Figures
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            shapes = ReadWriteShapes.LoadShapes();
+            List<Shape> load = ReadWriteShapes.LoadShapes();
 
-            if (shapes != null)
-                Canvas.Refresh();
+            if (load != null)
+                shapes = load;
+            Canvas.Refresh();
         }
     }
 }

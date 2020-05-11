@@ -97,6 +97,8 @@ namespace Shapes
             sides[2] = Math.Sqrt(
                 Math.Pow(BX - AX, 2) +
                 Math.Pow(BY - AY, 2));
+
+            Type = ShapeType.Triangle;
         }
         public override void DrawShape(Graphics g)
         {

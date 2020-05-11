@@ -74,6 +74,8 @@ namespace Shapes
             sides[1] = Math.Abs(centerY - perimeterY);
 
             CenterPoint = new Point(centerX, centerY);
+
+            Type = ShapeType.Ellipse;
         }
         public override void DrawShape(Graphics g)
         {

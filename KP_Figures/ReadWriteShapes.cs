@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shapes;
 using Rectangle = Shapes.Rectangle;
@@ -17,7 +11,7 @@ namespace KP_Figures
     public partial class ReadWriteShapes : Form
     {
         private BinaryFormatter formatter = new BinaryFormatter();
-        private int operationCode;
+        private int operationCode; // 0 - write, 1 - read
         private List<Shape> shapes;
         private ReadWriteShapes()
         {

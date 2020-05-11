@@ -85,6 +85,8 @@ namespace Shapes
             sides[1] = Math.Abs(firstY - secondY);
 
             Solid = true;
+
+            Type = ShapeType.Rectangle;
         }
         public override void DrawShape(Graphics g)
         {

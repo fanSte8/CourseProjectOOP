@@ -65,6 +65,8 @@ namespace Shapes
                 Math.Pow(centerY - perimeterY, 2));
 
             CenterPoint = new Point(centerX, centerY);
+
+            Type = ShapeType.Circle;
         }
         
         public override void DrawShape(Graphics g)

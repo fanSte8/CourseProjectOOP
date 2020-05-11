@@ -13,6 +13,10 @@ namespace Shapes
 
         protected Point[] points = new Point[3];
 
+        public ShapeType Type;
+
+        public Point CenterPoint;
+
         public abstract double FirstSide { get; set; }
 
         public abstract double SecondSide { get; set; }
@@ -24,8 +28,6 @@ namespace Shapes
         public abstract Point SecondPoint { get; set; }
 
         public abstract Point ThirdPoint { get; set; }
-
-        public Point CenterPoint;
 
         public int Order { get; set; }
 

@@ -73,6 +73,8 @@ namespace Shapes
                 Math.Max(firstY, secondY));
 
             sides[0] = Math.Abs(firstX - secondX);
+            
+            Type = ShapeType.Square;
         }
 
         public override void DrawShape(Graphics g)
