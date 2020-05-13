@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace Shapes
 {
@@ -16,18 +13,6 @@ namespace Shapes
         public ShapeType Type;
 
         public Point CenterPoint;
-
-        public abstract double FirstSide { get; set; }
-
-        public abstract double SecondSide { get; set; }
-
-        public abstract double ThirdSide { get; set; }
-
-        public abstract Point FirstPoint { get; set; }
-
-        public abstract Point SecondPoint { get; set; }
-
-        public abstract Point ThirdPoint { get; set; }
 
         public int Order { get; set; }
 

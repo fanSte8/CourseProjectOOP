@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -11,7 +7,7 @@ namespace Shapes
     [Serializable]
     public class Triangle : Shape
     {
-        public override double FirstSide
+        public double FirstSide
         {
             get
             {
@@ -20,13 +16,13 @@ namespace Shapes
             set
             {
                 if (value <= 0)
-                    throw new Exception("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[0] = value;
             }
         }
 
-        public override double SecondSide
+        public double SecondSide
         {
             get
             {
@@ -35,12 +31,12 @@ namespace Shapes
             set
             {
                 if (value <= 0)
-                    throw new Exception("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[1] = value;
             }
         }
-        public override double ThirdSide
+        public double ThirdSide
         {
             get
             {
@@ -49,25 +45,25 @@ namespace Shapes
             set
             {
                 if (value <= 0)
-                    throw new Exception("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[2] = value;
             }
         }
 
-        public override Point FirstPoint
+        public Point PointA
         {
             get => points[0];
             set => points[0] = value;
         }
 
-        public override Point SecondPoint
+        public Point PointB
         {
             get => points[1];
             set => points[1] = value;
         }
 
-        public override Point ThirdPoint
+        public Point PointC
         {
             get => points[2];
             set => points[2] = value;
@@ -78,9 +74,9 @@ namespace Shapes
              int CX, int CY, Color line, Color fill)
             :base(line, fill)
         {
-            FirstPoint = new Point(AX, AY);
-            SecondPoint = new Point(BX, BY);
-            ThirdPoint = new Point(CX, CY);
+            points[0] = new Point(AX, AY);
+            points[1] = new Point(BX, BY);
+            points[2] = new Point(CX, CY);
 
             CenterPoint = new Point(
                 (points[0].X + points[1].X + points[2].X) / 3,

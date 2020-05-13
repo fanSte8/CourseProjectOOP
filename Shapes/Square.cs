@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -11,7 +7,7 @@ namespace Shapes
     [Serializable]
     public class Square : Shape
     {
-        public override double FirstSide 
+        public double SideLength 
         { 
             get
             {
@@ -20,39 +16,22 @@ namespace Shapes
             set
             {
                 if (value <= 0)
-                    throw new Exception("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[0] = value;
             }
         }
 
-        public override double SecondSide 
-        { 
-            get => throw new Exception("You are trying to access a non-existant property."); 
-            set => throw new Exception("You are trying to access a non-existant property."); 
-        }
-        public override double ThirdSide
-        {
-            get => throw new Exception("You are trying to access a non-existant property.");
-            set => throw new Exception("You are trying to access a non-existant property.");
-        }
-
-        public override Point FirstPoint 
+        public Point TopLeftPoint 
         {
             get => points[0];
             set => points[0] = value;
         }
-        public override Point SecondPoint 
+        public Point BottomRightPoint 
         {
             get => points[1];
             set => points[1] = value;
         }
-        public override Point ThirdPoint 
-        {
-            get => throw new Exception("You are trying to access a non-existant property.");
-            set => throw new Exception("You are trying to access a non-existant property.");
-        }
-
 
         public Square
             (int firstX, int firstY, 
@@ -64,11 +43,11 @@ namespace Shapes
                 (firstX + secondX) / 2,
                 (firstY + secondY) / 2);
 
-            FirstPoint = new Point(
+            points[0] = new Point(
                 Math.Min(firstX, secondX),
                 Math.Min(firstY, secondY));
 
-            SecondPoint = new Point(
+            points[1] = new Point(
                 Math.Max(firstX, secondX),
                 Math.Max(firstY, secondY));
 
