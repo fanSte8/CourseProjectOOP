@@ -31,7 +31,7 @@ namespace Shapes
             set
             {
                 if (value <= 0)
-                    throw new Exception("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[1] = value;
             }
@@ -52,9 +52,7 @@ namespace Shapes
 
         public Rectangle
             (int firstX, int firstY,
-             int secondX, int secondY, 
-             Color line, Color fill)
-            : base(line, fill)
+             int secondX, int secondY)
         {
             CenterPoint = new Point(
                 Math.Min(firstX, secondX),

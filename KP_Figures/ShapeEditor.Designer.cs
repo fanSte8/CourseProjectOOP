@@ -1,6 +1,6 @@
 ﻿namespace KP_Figures
 {
-    partial class ShapeEditorForm
+    partial class ShapeEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelColors = new System.Windows.Forms.Panel();
-            this.buttonSetWidth = new System.Windows.Forms.Button();
-            this.textBoxLineWidth = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.buttonLineColor = new System.Windows.Forms.Button();
-            this.buttonFillColor = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelOKCancel = new System.Windows.Forms.Panel();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.panelEllipse = new System.Windows.Forms.Panel();
-            this.textBoxEllipseHeigth = new System.Windows.Forms.TextBox();
+            this.textBoxEllipseHeight = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.textBoxEllipseWidth = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -58,7 +50,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelRectangle = new System.Windows.Forms.Panel();
-            this.textBoxRectangleHeigth = new System.Windows.Forms.TextBox();
+            this.textBoxRectangleHeight = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxRectangleWidth = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -93,7 +85,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.colorDialogFill = new System.Windows.Forms.ColorDialog();
             this.colorDialogLine = new System.Windows.Forms.ColorDialog();
-            this.panelColors.SuspendLayout();
             this.panelOKCancel.SuspendLayout();
             this.panelEllipse.SuspendLayout();
             this.panelSquare.SuspendLayout();
@@ -102,93 +93,12 @@
             this.panelTriangle.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelColors
-            // 
-            this.panelColors.Controls.Add(this.buttonSetWidth);
-            this.panelColors.Controls.Add(this.textBoxLineWidth);
-            this.panelColors.Controls.Add(this.label3);
-            this.panelColors.Controls.Add(this.buttonLineColor);
-            this.panelColors.Controls.Add(this.buttonFillColor);
-            this.panelColors.Controls.Add(this.label2);
-            this.panelColors.Controls.Add(this.label1);
-            this.panelColors.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelColors.Location = new System.Drawing.Point(0, 0);
-            this.panelColors.Name = "panelColors";
-            this.panelColors.Size = new System.Drawing.Size(258, 66);
-            this.panelColors.TabIndex = 0;
-            // 
-            // buttonSetWidth
-            // 
-            this.buttonSetWidth.Location = new System.Drawing.Point(177, 37);
-            this.buttonSetWidth.Name = "buttonSetWidth";
-            this.buttonSetWidth.Size = new System.Drawing.Size(72, 23);
-            this.buttonSetWidth.TabIndex = 5;
-            this.buttonSetWidth.Text = "Set";
-            this.buttonSetWidth.UseVisualStyleBackColor = true;
-            this.buttonSetWidth.Click += new System.EventHandler(this.buttonSetWidth_Click);
-            // 
-            // textBoxLineWidth
-            // 
-            this.textBoxLineWidth.Location = new System.Drawing.Point(177, 7);
-            this.textBoxLineWidth.Name = "textBoxLineWidth";
-            this.textBoxLineWidth.Size = new System.Drawing.Size(72, 20);
-            this.textBoxLineWidth.TabIndex = 4;
-            this.textBoxLineWidth.Text = "1";
-            this.textBoxLineWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(116, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Line width";
-            // 
-            // buttonLineColor
-            // 
-            this.buttonLineColor.BackColor = System.Drawing.Color.Black;
-            this.buttonLineColor.Location = new System.Drawing.Point(75, 35);
-            this.buttonLineColor.Name = "buttonLineColor";
-            this.buttonLineColor.Size = new System.Drawing.Size(24, 24);
-            this.buttonLineColor.TabIndex = 3;
-            this.buttonLineColor.UseVisualStyleBackColor = false;
-            this.buttonLineColor.Click += new System.EventHandler(this.buttonLineColor_Click);
-            // 
-            // buttonFillColor
-            // 
-            this.buttonFillColor.BackColor = System.Drawing.SystemColors.Window;
-            this.buttonFillColor.Location = new System.Drawing.Point(75, 7);
-            this.buttonFillColor.Name = "buttonFillColor";
-            this.buttonFillColor.Size = new System.Drawing.Size(24, 24);
-            this.buttonFillColor.TabIndex = 2;
-            this.buttonFillColor.UseVisualStyleBackColor = false;
-            this.buttonFillColor.Click += new System.EventHandler(this.buttonFillColor_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Line color";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fill color";
-            // 
             // panelOKCancel
             // 
             this.panelOKCancel.Controls.Add(this.buttonOK);
             this.panelOKCancel.Controls.Add(this.buttonCancel);
             this.panelOKCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOKCancel.Location = new System.Drawing.Point(0, 268);
+            this.panelOKCancel.Location = new System.Drawing.Point(0, 191);
             this.panelOKCancel.Name = "panelOKCancel";
             this.panelOKCancel.Size = new System.Drawing.Size(258, 44);
             this.panelOKCancel.TabIndex = 1;
@@ -201,6 +111,7 @@
             this.buttonOK.TabIndex = 1;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // buttonCancel
             // 
@@ -210,10 +121,11 @@
             this.buttonCancel.TabIndex = 0;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // panelEllipse
             // 
-            this.panelEllipse.Controls.Add(this.textBoxEllipseHeigth);
+            this.panelEllipse.Controls.Add(this.textBoxEllipseHeight);
             this.panelEllipse.Controls.Add(this.label13);
             this.panelEllipse.Controls.Add(this.textBoxEllipseWidth);
             this.panelEllipse.Controls.Add(this.label14);
@@ -225,15 +137,15 @@
             this.panelEllipse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEllipse.Location = new System.Drawing.Point(0, 0);
             this.panelEllipse.Name = "panelEllipse";
-            this.panelEllipse.Size = new System.Drawing.Size(258, 312);
+            this.panelEllipse.Size = new System.Drawing.Size(258, 235);
             this.panelEllipse.TabIndex = 4;
             // 
-            // textBoxEllipseHeigth
+            // textBoxEllipseHeight
             // 
-            this.textBoxEllipseHeigth.Location = new System.Drawing.Point(99, 143);
-            this.textBoxEllipseHeigth.Name = "textBoxEllipseHeigth";
-            this.textBoxEllipseHeigth.Size = new System.Drawing.Size(60, 20);
-            this.textBoxEllipseHeigth.TabIndex = 31;
+            this.textBoxEllipseHeight.Location = new System.Drawing.Point(99, 143);
+            this.textBoxEllipseHeight.Name = "textBoxEllipseHeight";
+            this.textBoxEllipseHeight.Size = new System.Drawing.Size(60, 20);
+            this.textBoxEllipseHeight.TabIndex = 31;
             // 
             // label13
             // 
@@ -313,7 +225,7 @@
             this.panelSquare.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSquare.Location = new System.Drawing.Point(0, 0);
             this.panelSquare.Name = "panelSquare";
-            this.panelSquare.Size = new System.Drawing.Size(258, 312);
+            this.panelSquare.Size = new System.Drawing.Size(258, 235);
             this.panelSquare.TabIndex = 5;
             // 
             // textBoxSquareSide
@@ -375,7 +287,7 @@
             // 
             // panelRectangle
             // 
-            this.panelRectangle.Controls.Add(this.textBoxRectangleHeigth);
+            this.panelRectangle.Controls.Add(this.textBoxRectangleHeight);
             this.panelRectangle.Controls.Add(this.label8);
             this.panelRectangle.Controls.Add(this.textBoxRectangleWidth);
             this.panelRectangle.Controls.Add(this.label9);
@@ -387,15 +299,15 @@
             this.panelRectangle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRectangle.Location = new System.Drawing.Point(0, 0);
             this.panelRectangle.Name = "panelRectangle";
-            this.panelRectangle.Size = new System.Drawing.Size(258, 312);
+            this.panelRectangle.Size = new System.Drawing.Size(258, 235);
             this.panelRectangle.TabIndex = 6;
             // 
-            // textBoxRectangleHeigth
+            // textBoxRectangleHeight
             // 
-            this.textBoxRectangleHeigth.Location = new System.Drawing.Point(99, 145);
-            this.textBoxRectangleHeigth.Name = "textBoxRectangleHeigth";
-            this.textBoxRectangleHeigth.Size = new System.Drawing.Size(60, 20);
-            this.textBoxRectangleHeigth.TabIndex = 40;
+            this.textBoxRectangleHeight.Location = new System.Drawing.Point(99, 145);
+            this.textBoxRectangleHeight.Name = "textBoxRectangleHeight";
+            this.textBoxRectangleHeight.Size = new System.Drawing.Size(60, 20);
+            this.textBoxRectangleHeight.TabIndex = 40;
             // 
             // label8
             // 
@@ -475,7 +387,7 @@
             this.panelCircle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCircle.Location = new System.Drawing.Point(0, 0);
             this.panelCircle.Name = "panelCircle";
-            this.panelCircle.Size = new System.Drawing.Size(258, 312);
+            this.panelCircle.Size = new System.Drawing.Size(258, 235);
             this.panelCircle.TabIndex = 7;
             // 
             // textBoxCircleRadius
@@ -553,9 +465,9 @@
             this.panelTriangle.Controls.Add(this.label23);
             this.panelTriangle.Controls.Add(this.label24);
             this.panelTriangle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTriangle.Location = new System.Drawing.Point(0, 66);
+            this.panelTriangle.Location = new System.Drawing.Point(0, 0);
             this.panelTriangle.Name = "panelTriangle";
-            this.panelTriangle.Size = new System.Drawing.Size(258, 202);
+            this.panelTriangle.Size = new System.Drawing.Size(258, 191);
             this.panelTriangle.TabIndex = 8;
             // 
             // textBoxYTriangleThird
@@ -685,18 +597,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(258, 312);
+            this.ClientSize = new System.Drawing.Size(258, 235);
             this.Controls.Add(this.panelTriangle);
             this.Controls.Add(this.panelOKCancel);
-            this.Controls.Add(this.panelColors);
             this.Controls.Add(this.panelCircle);
             this.Controls.Add(this.panelEllipse);
             this.Controls.Add(this.panelSquare);
             this.Controls.Add(this.panelRectangle);
             this.Name = "ShapeEditorForm";
             this.Text = "Shape editor";
-            this.panelColors.ResumeLayout(false);
-            this.panelColors.PerformLayout();
             this.panelOKCancel.ResumeLayout(false);
             this.panelEllipse.ResumeLayout(false);
             this.panelEllipse.PerformLayout();
@@ -713,19 +622,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelColors;
-        private System.Windows.Forms.Button buttonSetWidth;
-        private System.Windows.Forms.TextBox textBoxLineWidth;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonLineColor;
-        private System.Windows.Forms.Button buttonFillColor;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelOKCancel;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.TextBox textBoxEllipseHeigth;
+        private System.Windows.Forms.TextBox textBoxEllipseHeight;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBoxEllipseWidth;
         private System.Windows.Forms.Label label14;
@@ -744,7 +644,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panelRectangle;
-        private System.Windows.Forms.TextBox textBoxRectangleHeigth;
+        private System.Windows.Forms.TextBox textBoxRectangleHeight;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxRectangleWidth;
         private System.Windows.Forms.Label label9;

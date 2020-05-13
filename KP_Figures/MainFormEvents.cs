@@ -30,9 +30,11 @@ namespace KP_Figures
                         tempShape = new Triangle(
                                 trianglePoints[0].X, trianglePoints[0].Y,
                                 trianglePoints[1].X, trianglePoints[1].Y,
-                                trianglePoints[2].X, trianglePoints[2].Y,
-                                lineColor, fillColor);
+                                trianglePoints[2].X, trianglePoints[2].Y);
 
+                        tempShape.LineColor = lineColor;
+                        tempShape.FillColor = fillColor;
+                        tempShape.LineWidth = lineWidth;
                         AddShape(tempShape);
                         tempShape = null;
 
@@ -94,32 +96,28 @@ namespace KP_Figures
 
                     tempShape = new Square(
                         startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y,
-                        Color.Gray, Color.LightGray);
+                        e.Location.X, e.Location.Y);
                     break;
 
                 case Tool.DrawRectangle:
 
                     tempShape = new Rectangle(
                         startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y,
-                        Color.Gray, Color.LightGray);
+                        e.Location.X, e.Location.Y);
                     break;
 
                 case Tool.DrawCircle:
 
                     tempShape = new Circle(
                         startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y,
-                        Color.Gray, Color.LightGray);
+                        e.Location.X, e.Location.Y);
                     break;
 
                 case Tool.DrawEllipse:
 
                     tempShape = new Ellipse(
                         startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y,
-                        Color.Gray, Color.LightGray);
+                        e.Location.X, e.Location.Y);
                     break;
 
                 case Tool.DrawTriangle:
@@ -151,8 +149,7 @@ namespace KP_Figures
 
                     var frame = new Rectangle(
                         startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y,
-                        Color.Gray, Color.Gray)
+                        e.Location.X, e.Location.Y)
                     { Solid = false };
 
                     foreach (var s in shapes)
@@ -206,6 +203,9 @@ namespace KP_Figures
 
                     if (tempShape != null)
                     {
+                        tempShape.LineColor = lineColor;
+                        tempShape.FillColor = fillColor;
+                        tempShape.LineWidth = lineWidth;
                         AddShape(tempShape);
                         tempShape = null;
                     }

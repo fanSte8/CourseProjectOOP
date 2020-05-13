@@ -113,8 +113,10 @@ namespace KP_Figures
                 selectTool = Tool.DrawSquare;
             else if (e.Button == MouseButtons.Right)
             {
-                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Square);
-                sef.ShowDialog();
+                var newShape = ShapeEditor.CreateShape(ShapeType.Square);
+
+                if (newShape != null)
+                    AddShape(newShape);
             }
         }
 
@@ -124,8 +126,10 @@ namespace KP_Figures
                 selectTool = Tool.DrawRectangle;
             else if (e.Button == MouseButtons.Right)
             {
-                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Rectangle);
-                sef.ShowDialog();
+                var newShape = ShapeEditor.CreateShape(ShapeType.Rectangle);
+
+                if (newShape != null)
+                    AddShape(newShape);
             }
         }
 
@@ -135,8 +139,10 @@ namespace KP_Figures
                 selectTool = Tool.DrawCircle;
             else if (e.Button == MouseButtons.Right)
             {
-                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Circle);
-                sef.ShowDialog();
+                var newShape = ShapeEditor.CreateShape(ShapeType.Circle);
+
+                if (newShape != null)
+                    AddShape(newShape);
             }
         }
 
@@ -146,8 +152,10 @@ namespace KP_Figures
                 selectTool = Tool.DrawEllipse;
             else if (e.Button == MouseButtons.Right)
             {
-                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Ellipse);
-                sef.ShowDialog();
+                var newShape = ShapeEditor.CreateShape(ShapeType.Ellipse);
+
+                if (newShape != null)
+                    AddShape(newShape);
             }
         }
 
@@ -160,9 +168,25 @@ namespace KP_Figures
             }
             else if (e.Button == MouseButtons.Right)
             {
-                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Triangle);
-                sef.ShowDialog();
+                var newShape = ShapeEditor.CreateShape(ShapeType.Triangle);
+
+                if (newShape != null)
+                    AddShape(newShape);
             }
+        }
+
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var editedShape = ShapeEditor.EditShape(selectShapes[0]);
+
+            if (editedShape != null)
+            {
+                shapes.Remove(selectShapes[0]);
+                selectShapes.Clear();
+                shapes.Add(editedShape);
+            }
+
+            UpdateForm();
         }
     }
 }

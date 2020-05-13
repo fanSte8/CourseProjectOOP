@@ -35,9 +35,7 @@ namespace Shapes
 
         public Square
             (int firstX, int firstY, 
-             int secondX, int secondY,
-             Color line, Color fill)
-            :base(line, fill)
+             int secondX, int secondY)
         {
             CenterPoint = new Point(
                 (firstX + secondX) / 2,

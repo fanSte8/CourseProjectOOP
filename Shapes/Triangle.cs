@@ -70,9 +70,9 @@ namespace Shapes
         }
 
         public Triangle
-            (int AX, int AY, int BX, int BY,
-             int CX, int CY, Color line, Color fill)
-            :base(line, fill)
+            (int AX, int AY, 
+             int BX, int BY,
+             int CX, int CY)
         {
             points[0] = new Point(AX, AY);
             points[1] = new Point(BX, BY);

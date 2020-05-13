@@ -24,9 +24,7 @@ namespace Shapes
 
         public Circle
             (int centerX, int centerY, 
-             int perimeterX, int perimeterY, 
-             Color line, Color fill)
-            : base(line, fill)
+             int perimeterX, int perimeterY)
         {
             sides[0] = Math.Sqrt(
                 Math.Pow(centerX - perimeterX, 2) +
