@@ -48,6 +48,7 @@
             this.singleShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +111,7 @@
             this.textBoxLineWidth.Size = new System.Drawing.Size(67, 22);
             this.textBoxLineWidth.TabIndex = 11;
             this.textBoxLineWidth.Text = "1";
+            this.textBoxLineWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -169,8 +171,8 @@
             this.drawTriangle.Size = new System.Drawing.Size(30, 30);
             this.drawTriangle.TabIndex = 4;
             this.drawTriangle.UseVisualStyleBackColor = true;
-            this.drawTriangle.Click += new System.EventHandler(this.drawTriangle_Click);
             this.drawTriangle.Paint += new System.Windows.Forms.PaintEventHandler(this.drawTriangle_Paint);
+            this.drawTriangle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawTriangle_MouseDown);
             // 
             // drawEllipse
             // 
@@ -180,8 +182,8 @@
             this.drawEllipse.Size = new System.Drawing.Size(30, 30);
             this.drawEllipse.TabIndex = 3;
             this.drawEllipse.UseVisualStyleBackColor = true;
-            this.drawEllipse.Click += new System.EventHandler(this.drawEllipse_Click);
             this.drawEllipse.Paint += new System.Windows.Forms.PaintEventHandler(this.drawEllipse_Paint);
+            this.drawEllipse.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawEllipse_MouseDown);
             // 
             // drawCircle
             // 
@@ -191,8 +193,8 @@
             this.drawCircle.Size = new System.Drawing.Size(30, 30);
             this.drawCircle.TabIndex = 2;
             this.drawCircle.UseVisualStyleBackColor = true;
-            this.drawCircle.Click += new System.EventHandler(this.drawCircle_Click);
             this.drawCircle.Paint += new System.Windows.Forms.PaintEventHandler(this.drawCircle_Paint);
+            this.drawCircle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawCircle_MouseDown);
             // 
             // drawRectangle
             // 
@@ -202,8 +204,8 @@
             this.drawRectangle.Size = new System.Drawing.Size(30, 30);
             this.drawRectangle.TabIndex = 1;
             this.drawRectangle.UseVisualStyleBackColor = true;
-            this.drawRectangle.Click += new System.EventHandler(this.drawRectangle_Click);
             this.drawRectangle.Paint += new System.Windows.Forms.PaintEventHandler(this.drawRectangle_Paint);
+            this.drawRectangle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawRectangle_MouseDown);
             // 
             // drawSquare
             // 
@@ -214,14 +216,15 @@
             this.drawSquare.Size = new System.Drawing.Size(30, 30);
             this.drawSquare.TabIndex = 0;
             this.drawSquare.UseVisualStyleBackColor = true;
-            this.drawSquare.Click += new System.EventHandler(this.drawSquare_Click);
             this.drawSquare.Paint += new System.Windows.Forms.PaintEventHandler(this.drawSquare_Paint);
+            this.drawSquare.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawSquare_MouseDown);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectShpaeToolStripMenuItem,
             this.moveToolStripMenuItem,
+            this.editToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.clearToolStripMenuItem});
@@ -256,10 +259,18 @@
             // 
             // moveToolStripMenuItem
             // 
+            this.moveToolStripMenuItem.Enabled = false;
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
             this.moveToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.moveToolStripMenuItem.Text = "Move";
             this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Enabled = false;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
             // 
             // saveToolStripMenuItem
             // 
@@ -376,6 +387,7 @@
         private System.Windows.Forms.ToolStripStatusLabel SelectShapeInfo;
         private System.Windows.Forms.Panel Canvas;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
     }
 }
 

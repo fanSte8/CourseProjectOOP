@@ -19,7 +19,7 @@ namespace KP_Figures
         private Tool selectTool = Tool.NotSelected;
         private bool canvasTrackingMouse = false;
         private Point startPoint;
-        private List<Point> trianglePoints;
+        private List<Point> trianglePoints = new List<Point>();
         private Shape tempShape = null;
         private Color fillColor = Color.White;
         private Color lineColor = Color.Black;
@@ -47,8 +47,8 @@ namespace KP_Figures
             selectShapes.Clear();
 
             shapes.Add(shape);
-            selectShapes.Add(shape);
-            UpdateStatusStrip();
+            selectShapes.Add(shape); 
+            UpdateForm();
         }
         private void UpdateStatusStrip()
         {
@@ -57,6 +57,17 @@ namespace KP_Figures
             else
                 SelectShapeInfo.Text = selectShapes[0].ToString();
 
+        }
+
+        private void UpdateForm()
+        {
+            Canvas.Refresh();
+
+            UpdateStatusStrip();
+
+            moveToolStripMenuItem.Enabled = selectShapes.Count == 0 ? false : true;
+
+            editToolStripMenuItem.Enabled = selectShapes.Count == 1 ? true : false;
         }
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
@@ -104,19 +115,7 @@ namespace KP_Figures
                         });
         }
 
-        private void drawSquare_Click(object sender, EventArgs e) => selectTool = Tool.DrawSquare;
-
-        private void drawRectangle_Click(object sender, EventArgs e) => selectTool = Tool.DrawRectangle;
-
-        private void drawCircle_Click(object sender, EventArgs e)  => selectTool = Tool.DrawCircle;
         
-        private void drawEllipse_Click(object sender, EventArgs e) => selectTool = Tool.DrawEllipse;
-        
-        private void drawTriangle_Click(object sender, EventArgs e)
-        {
-            trianglePoints = new List<Point>();
-            selectTool = Tool.DrawTriangle;
-        }
 
         private void singleShapeToolStripMenuItem_Click(object sender, EventArgs e) => selectTool = Tool.SelectSingle;
 
@@ -127,16 +126,28 @@ namespace KP_Figures
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             shapes.Clear();
+            selectShapes.Clear();
 
             SelectShapeInfo.Text = "";
 
-            Canvas.Refresh();
+            UpdateForm();
             selectTool = Tool.NotSelected;
         }
 
         private void buttonSetWidth_Click(object sender, EventArgs e)
         {
-            lineWidth = int.Parse(textBoxLineWidth.Text);
+            int w;
+
+            if (textBoxLineWidth.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter a value first.");
+                return;
+            }
+
+            if (int.TryParse(textBoxLineWidth.Text, out w))
+                lineWidth = w;
+            else
+                MessageBox.Show("Invalid input");
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -205,7 +216,7 @@ namespace KP_Figures
             }
 
             Canvas.Refresh();
-            UpdateStatusStrip();
+            UpdateForm();
         }
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
@@ -308,7 +319,6 @@ namespace KP_Figures
 
             using (var g = Canvas.CreateGraphics())
                 tempShape?.DrawShape(g);
-            UpdateStatusStrip();
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
@@ -350,7 +360,8 @@ namespace KP_Figures
 
                     break;
             }
-            UpdateStatusStrip();
+
+            UpdateForm();
         }
 
         private void buttonLineColor_Click(object sender, EventArgs e)
@@ -384,7 +395,7 @@ namespace KP_Figures
 
             selectShapes.Clear();
             Canvas.Refresh();
-            UpdateStatusStrip();
+            UpdateForm();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -403,8 +414,66 @@ namespace KP_Figures
             List<Shape> load = ReadWriteShapes.LoadShapes();
 
             if (load != null)
-                shapes = load;
-            Canvas.Refresh();
+                shapes = load; 
+            UpdateForm();
+        }
+
+        private void drawSquare_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                selectTool = Tool.DrawSquare;
+            else if (e.Button == MouseButtons.Right)
+            {
+                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Square);
+                sef.ShowDialog();
+            }
+        }
+
+        private void drawRectangle_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                selectTool = Tool.DrawRectangle;
+            else if (e.Button == MouseButtons.Right)
+            {
+                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Rectangle);
+                sef.ShowDialog();
+            }
+        }
+
+        private void drawCircle_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                selectTool = Tool.DrawCircle;
+            else if (e.Button == MouseButtons.Right)
+            {
+                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Circle);
+                sef.ShowDialog();
+            }
+        }
+
+        private void drawEllipse_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                selectTool = Tool.DrawEllipse;
+            else if (e.Button == MouseButtons.Right)
+            {
+                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Ellipse);
+                sef.ShowDialog();
+            }
+        }
+
+        private void drawTriangle_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                trianglePoints.Clear();
+                selectTool = Tool.DrawTriangle;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                ShapeEditorForm sef = new ShapeEditorForm(ShapeType.Triangle);
+                sef.ShowDialog();
+            }
         }
     }
 }

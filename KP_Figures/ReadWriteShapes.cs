@@ -13,15 +13,16 @@ namespace KP_Figures
         private BinaryFormatter formatter = new BinaryFormatter();
         private int operationCode; // 0 - write, 1 - read
         private List<Shape> shapes;
-        private ReadWriteShapes()
+        private ReadWriteShapes(int code)
         {
             InitializeComponent();
+
+            operationCode = code;
         }
 
         public static void SaveShapes(List<Shape> shapes)
         {
-            ReadWriteShapes rws = new ReadWriteShapes();
-            rws.operationCode = 0;
+            ReadWriteShapes rws = new ReadWriteShapes(0);
             rws.shapes = shapes;
 
             if (rws.ShowDialog() == DialogResult.OK)
@@ -30,8 +31,7 @@ namespace KP_Figures
 
         public static List<Shape> LoadShapes()
         {
-            ReadWriteShapes rws = new ReadWriteShapes();
-            rws.operationCode = 1;
+            ReadWriteShapes rws = new ReadWriteShapes(1);
 
             if (rws.ShowDialog() == DialogResult.OK)
                 return rws.shapes;
@@ -64,6 +64,7 @@ namespace KP_Figures
                     FileMode.OpenOrCreate, FileAccess.Write))
                     formatter.Serialize(file, shapes);
             }
+
             else if (operationCode == 1)
             {
                 if (!File.Exists(textBoxFileName.Text))
