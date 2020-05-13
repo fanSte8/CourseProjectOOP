@@ -53,7 +53,6 @@ namespace KP_Figures
                 SelectShapeInfo.Text = "";
             else
                 SelectShapeInfo.Text = selectShapes[0].ToString();
-
         }
 
         private void UpdateForm()

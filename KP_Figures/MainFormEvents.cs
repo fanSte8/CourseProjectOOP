@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -76,7 +75,6 @@ namespace KP_Figures
 
             }
 
-            Canvas.Refresh();
             UpdateForm();
         }
 
@@ -126,7 +124,6 @@ namespace KP_Figures
 
                 case Tool.DrawTriangle:
 
-
                     using (var g = Canvas.CreateGraphics())
                     {
                         if (trianglePoints.Count == 1)
@@ -148,7 +145,6 @@ namespace KP_Figures
                         }
                     }
 
-
                     break;
 
                 case Tool.SelectMultiple:
@@ -162,7 +158,6 @@ namespace KP_Figures
                     foreach (var s in shapes)
                         s.IsSelect = frame.ContainsPoint(s.CenterPoint);
 
-                    Canvas.Refresh();
                     using (var g = Canvas.CreateGraphics())
                         frame.DrawShape(g);
 
@@ -202,22 +197,18 @@ namespace KP_Figures
                         .ToList();
 
                     canvasTrackingMouse = false;
-                    Canvas.Refresh();
 
                     break;
 
                 default:
 
                     canvasTrackingMouse = false;
-                    Canvas.Refresh();
 
                     if (tempShape != null)
                     {
                         AddShape(tempShape);
                         tempShape = null;
                     }
-
-                    Canvas.Refresh();
 
                     break;
             }
