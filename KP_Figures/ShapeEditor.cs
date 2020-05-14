@@ -70,8 +70,8 @@ namespace KP_Figures
                     case ShapeType.Square:
 
                         textBoxSquareSide.Text = ((Square)value).SideLength.ToString();
-                        textBoxXSquare.Text = ((Square)value).TopLeftPoint.X.ToString();
-                        textBoxYSquare.Text = ((Square)value).TopLeftPoint.Y.ToString();
+                        textBoxXSquare.Text = ((Square)value).TopLeft.X.ToString();
+                        textBoxYSquare.Text = ((Square)value).TopLeft.Y.ToString();
 
                         break;
 
@@ -124,11 +124,11 @@ namespace KP_Figures
                     int sqx = int.Parse(textBoxXSquare.Text);
                     int sqy = int.Parse(textBoxYSquare.Text);
                     double side = double.Parse(textBoxSquareSide.Text);
-
+                    
                     shape = new Square(
                         new Point(sqx, sqy), side,
                         fillColor, lineColor, lineWidth);
-
+                    
                     break;
 
                 case ShapeType.Rectangle:
@@ -231,8 +231,16 @@ namespace KP_Figures
         {
             ShapeEditor se = new ShapeEditor(st);
 
-            if (se.ShowDialog() == DialogResult.OK)
-                return se.Shape;
+            try
+            {
+                if (se.ShowDialog() == DialogResult.OK)
+                    return se.Shape;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
             return null;
         }
 
@@ -243,10 +251,17 @@ namespace KP_Figures
             ShapeEditor se = new ShapeEditor(s.Type);
             se.Shape = s;
 
-            if (se.ShowDialog() == DialogResult.OK)
+            try
             {
-                se.Shape.Order = order;
-                return se.Shape;
+                if (se.ShowDialog() == DialogResult.OK)
+                {
+                    se.Shape.Order = order;
+                    return se.Shape;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
 
             return null;

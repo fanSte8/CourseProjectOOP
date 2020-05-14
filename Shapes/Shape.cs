@@ -12,7 +12,7 @@ namespace Shapes
 
         public ShapeType Type;
 
-        public Point CenterPoint;
+        public Point CenterPoint { get; protected set; }
 
         public int Order { get; set; }
 

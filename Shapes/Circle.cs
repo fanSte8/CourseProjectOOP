@@ -13,10 +13,10 @@ namespace Shapes
             {
                 return sides[0];
             }
-            set
+            private set
             {
                 if (value < 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[0] = value;
             }
@@ -31,7 +31,7 @@ namespace Shapes
                 Math.Pow(center.X - perimeter.X, 2) +
                 Math.Pow(center.Y - perimeter.Y, 2));
 
-            CenterPoint = new Point(center.X, center.Y);
+            CenterPoint = center;
 
             Type = ShapeType.Circle;
         }
@@ -42,7 +42,7 @@ namespace Shapes
             :base(fill, line, w)
         {
             Radius = radius;
-            CenterPoint = new Point(center.X, center.Y);
+            CenterPoint = center;
 
             Type = ShapeType.Circle;
         }
@@ -101,8 +101,9 @@ namespace Shapes
         }
         public override void Move(int changeX, int changeY)
         {
-            CenterPoint.X += changeX;
-            CenterPoint.Y += changeY;
+            CenterPoint = new Point
+                (CenterPoint.X + changeX,
+                 CenterPoint.Y + changeY);
         }
 
     }

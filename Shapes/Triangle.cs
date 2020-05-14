@@ -13,10 +13,10 @@ namespace Shapes
             {
                 return sides[0];
             }
-            set
+            private set
             {
                 if (value <= 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[0] = value;
             }
@@ -28,10 +28,10 @@ namespace Shapes
             {
                 return sides[1];
             }
-            set
+            private set
             {
                 if (value <= 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[1] = value;
             }
@@ -42,10 +42,10 @@ namespace Shapes
             {
                 return sides[2];
             }
-            set
+            private set
             {
                 if (value <= 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[2] = value;
             }
@@ -54,19 +54,19 @@ namespace Shapes
         public Point PointA
         {
             get => points[0];
-            set => points[0] = value;
+            private set => points[0] = value;
         }
 
         public Point PointB
         {
             get => points[1];
-            set => points[1] = value;
+            private set => points[1] = value;
         }
 
         public Point PointC
         {
             get => points[2];
-            set => points[2] = value;
+            private set => points[2] = value;
         }
 
         public Triangle
@@ -186,8 +186,9 @@ namespace Shapes
 
         public override void Move(int changeX, int changeY)
         {
-            CenterPoint.X += changeX;
-            CenterPoint.Y += changeY;
+            CenterPoint = new Point
+                (CenterPoint.X + changeX,
+                 CenterPoint.Y + changeY);
             points[0].X += changeX;
             points[0].Y += changeY;
             points[1].X += changeX;

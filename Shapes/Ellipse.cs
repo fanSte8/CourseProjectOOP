@@ -13,10 +13,10 @@ namespace Shapes
             {
                 return sides[0];
             }
-            set
+            private set
             {
                 if (value < 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[0] = value;
             }
@@ -28,10 +28,10 @@ namespace Shapes
             {
                 return sides[1];
             }
-            set
+            private set
             {
                 if (value < 0)
-                    throw new Exception("Length value can't be a negative number.");
+                    throw new Exception("Length can't be a negative number.");
 
                 sides[1] = value;
             }
@@ -45,7 +45,7 @@ namespace Shapes
             SemiXAxis = Math.Abs(perimeter.X - center.X);
             SemiYAxis = Math.Abs(perimeter.Y - center.Y);
 
-            CenterPoint = new Point(center.X, center.Y);
+            CenterPoint = center;
 
             Type = ShapeType.Ellipse;
         }
@@ -59,7 +59,7 @@ namespace Shapes
             SemiXAxis = width / 2;
             SemiYAxis = heigth / 2;
 
-            CenterPoint = new Point(center.X, center.Y);
+            CenterPoint = center;
 
             Type = ShapeType.Ellipse;
         }
@@ -118,8 +118,9 @@ namespace Shapes
 
         public override void Move(int changeX, int changeY)
         {
-            CenterPoint.X += changeX;
-            CenterPoint.Y += changeY;
+            CenterPoint = new Point
+                (CenterPoint.X + changeX,
+                 CenterPoint.Y + changeY);
         }
     }
 }

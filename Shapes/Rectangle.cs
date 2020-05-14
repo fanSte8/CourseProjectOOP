@@ -13,10 +13,10 @@ namespace Shapes
             {
                 return sides[0];
             }
-            set
+            private set
             {
                 if (value < 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[0] = value;
             }
@@ -28,10 +28,10 @@ namespace Shapes
             {
                 return sides[1];
             }
-            set
+            private set
             {
                 if (value < 0)
-                    throw new InvalidValueExcepion("This value can't be a negative number.");
+                    throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[1] = value;
             }
@@ -40,9 +40,13 @@ namespace Shapes
         public Point TopLeftPoint
         {
             get => points[0];
-            set => points[0] = value;
+            private set => points[0] = value;
         }
-
+        public Point BottomRightPoint
+        {
+            get => points[1];
+            private set => points[1] = value;
+        }
         public bool Solid { get; set; }
 
         public Rectangle
@@ -51,12 +55,16 @@ namespace Shapes
             : base(fill, line, w)
         {
             CenterPoint = new Point(
+                (first.X + second.X) / 2,
+                (first.Y + second.Y) / 2);
+
+            TopLeftPoint = new Point(
                 Math.Min(first.X, second.X),
                 Math.Min(first.Y, second.Y));
 
-            points[0] = new Point(
-                Math.Min(first.X, second.X),
-                Math.Min(first.Y, second.Y));
+            BottomRightPoint = new Point(
+                Math.Max(first.X, second.X),
+                Math.Max(first.Y, second.Y));
 
             Width = Math.Abs(first.X - second.X);
             Height = Math.Abs(first.Y - second.Y);
@@ -76,7 +84,10 @@ namespace Shapes
                 topLeft.X + ((int)width / 2),
                 topLeft.Y + ((int)height / 2));
 
-            TopLeftPoint = new Point(topLeft.X, topLeft.Y);
+            TopLeftPoint = topLeft;
+            BottomRightPoint = new Point(
+                topLeft.X + (int)width,
+                topLeft.Y + (int)height);
 
             Width = width;
             Height = height;
@@ -143,8 +154,9 @@ namespace Shapes
 
         public override void Move(int changeX, int changeY)
         {
-            CenterPoint.X += changeX;
-            CenterPoint.Y += changeY;
+            CenterPoint = new Point
+                (CenterPoint.X + changeX,
+                 CenterPoint.Y + changeY);
             points[0].X += changeX;
             points[0].Y += changeY;
             points[1].X += changeX;
