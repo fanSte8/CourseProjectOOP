@@ -100,7 +100,7 @@ namespace Shapes
 
         public override string ToString()
         {
-            return $"Shape: Square, Area: {Math.Round(this.Area, 2)}, Circumference: {Math.Round(this.Circumference, 2)}";
+            return $"Shape: Square, Area: {Math.Round(this.Area, 2)}, Circumference: {Math.Round(this.Circumference, 2)}, Order: {this.Order}";
         }
 
         public override void Move(int changeX, int changeY)

@@ -9,6 +9,9 @@ namespace KP_Figures
     public partial class ShapeEditor : Form
     {
         ShapeType shapeType;
+        Color fillColor = Color.White;
+        Color lineColor = Color.Black;
+        int lineWidth = 1;
         private Shape shape;
         private ShapeEditor(ShapeType shapeType)
         {
@@ -54,6 +57,14 @@ namespace KP_Figures
 
             set
             {
+                fillColor = value.FillColor;
+                buttonFillColor.BackColor = value.FillColor;
+
+                lineColor = value.LineColor;
+                buttonLineColor.BackColor = value.LineColor;
+
+                textBoxLineWidth.Text = value.LineWidth.ToString();
+
                 switch (shapeType)
                 {
                     case ShapeType.Square:
@@ -177,30 +188,68 @@ namespace KP_Figures
             this.DialogResult = DialogResult.Cancel;
         }
 
+        private void ButtonLineColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialogLine.ShowDialog() == DialogResult.OK)
+            {
+                lineColor = colorDialogLine.Color;
+                buttonLineColor.BackColor = colorDialogLine.Color;
+            }
+        }
+
+        private void ButtonFillColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialogFill.ShowDialog() == DialogResult.OK)
+            {
+                fillColor = colorDialogFill.Color;
+                buttonFillColor.BackColor = colorDialogFill.Color;
+            }
+        }
+
+        private void ButtonSetWidth_Click(object sender, EventArgs e)
+        {
+            int w;
+
+            if (textBoxLineWidth.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter a value first.");
+                return;
+            }
+
+            if (int.TryParse(textBoxLineWidth.Text, out w))
+                lineWidth = w;
+            else
+                MessageBox.Show("Invalid input");
+        }
+
         public static Shape CreateShape(ShapeType st)
         {
             ShapeEditor se = new ShapeEditor(st);
 
             if (se.ShowDialog() == DialogResult.OK)
+            {
+                se.Shape.LineColor = se.lineColor;
+                se.Shape.FillColor = se.fillColor;
+                se.Shape.LineWidth = se.lineWidth;
+
                 return se.Shape;
+            }
+
             return null;
         }
 
         public static Shape EditShape(Shape s)
         {
             int ord = s.Order;
-            int lw = s.LineWidth;
-            Color fc = s.FillColor;
-            Color lc = s.LineColor;
 
             ShapeEditor se = new ShapeEditor(s.Type);
             se.Shape = s;
 
             if (se.ShowDialog() == DialogResult.OK)
             {
-                se.Shape.LineWidth = lw;
-                se.Shape.LineColor = lc;
-                se.Shape.FillColor = fc;
+                se.Shape.LineWidth = se.lineWidth;
+                se.Shape.LineColor = se.lineColor;
+                se.Shape.FillColor = se.fillColor;
                 se.Shape.Order = ord;
 
                 return se.Shape;

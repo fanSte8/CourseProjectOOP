@@ -46,15 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainFormButtons.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainFormEvents.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainFormPaint.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ShapeEditor.cs">
       <SubType>Form</SubType>
     </Compile>
