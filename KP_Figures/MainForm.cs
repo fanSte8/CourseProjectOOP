@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Shapes;
 using Rectangle = Shapes.Rectangle;
@@ -25,6 +26,12 @@ namespace KP_Figures
         public MainForm()
         {
             InitializeComponent();
+
+            typeof(Panel).InvokeMember("DoubleBuffered",
+            BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+            null, Canvas, new object[] { true });
+
+            
         }
 
         private void AddShape(Shape shape)

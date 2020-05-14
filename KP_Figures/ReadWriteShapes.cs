@@ -18,6 +18,8 @@ namespace KP_Figures
             InitializeComponent();
 
             operationCode = code;
+
+            this.Text = code == 0 ? "Save file" : "Load file";
         }
 
         public static void SaveShapes(List<Shape> shapes)

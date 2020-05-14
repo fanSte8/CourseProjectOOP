@@ -702,6 +702,7 @@
             this.Controls.Add(this.panelRectangle);
             this.Name = "ShapeEditor";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shape editor";
             this.panelOKCancel.ResumeLayout(false);
             this.panelEllipse.ResumeLayout(false);
