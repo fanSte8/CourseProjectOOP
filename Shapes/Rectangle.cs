@@ -15,7 +15,7 @@ namespace Shapes
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[0] = value;
@@ -30,7 +30,7 @@ namespace Shapes
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[1] = value;
@@ -42,37 +42,50 @@ namespace Shapes
             get => points[0];
             set => points[0] = value;
         }
-        public Point BottomRightPoint
-        {
-            get => points[1];
-            set => points[1] = value;
-        }
 
         public bool Solid { get; set; }
 
         public Rectangle
-            (int firstX, int firstY,
-             int secondX, int secondY)
+            (Point first, Point second,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
         {
             CenterPoint = new Point(
-                Math.Min(firstX, secondX),
-                Math.Min(firstY, secondY));
+                Math.Min(first.X, second.X),
+                Math.Min(first.Y, second.Y));
 
             points[0] = new Point(
-                Math.Min(firstX, secondX),
-                Math.Min(firstY, secondY));
+                Math.Min(first.X, second.X),
+                Math.Min(first.Y, second.Y));
 
-            points[1] = new Point(
-                Math.Max(firstX, secondX),
-                Math.Max(firstY, secondY));
-
-            sides[0] = Math.Abs(firstX - secondX);
-            sides[1] = Math.Abs(firstY - secondY);
+            Width = Math.Abs(first.X - second.X);
+            Height = Math.Abs(first.Y - second.Y);
 
             Solid = true;
 
             Type = ShapeType.Rectangle;
         }
+
+        public Rectangle
+            (Point topLeft,
+             double width, double height,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
+        {
+            CenterPoint = new Point(
+                topLeft.X + ((int)width / 2),
+                topLeft.Y + ((int)height / 2));
+
+            TopLeftPoint = new Point(topLeft.X, topLeft.Y);
+
+            Width = width;
+            Height = height;
+
+            Solid = true;
+
+            Type = ShapeType.Rectangle;
+        }
+
         public override void DrawShape(Graphics g)
         {
             if (Solid)

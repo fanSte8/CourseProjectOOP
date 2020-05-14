@@ -24,10 +24,11 @@ namespace Shapes
 
         public bool IsSelect { get; set; }
 
-        protected Shape()
+        protected Shape(Color fill, Color line, int width)
         {
-            FillColor = Color.LightGray;
-            LineColor = Color.LightGray;
+            FillColor = fill;
+            LineColor = line;
+            LineWidth = width;
             IsSelect = false;
         }
 

@@ -8,7 +8,6 @@ namespace KP_Figures
 {
     enum Tool
     {
-        NotSelected,
         DrawSquare,
         DrawRectangle,
         DrawCircle,

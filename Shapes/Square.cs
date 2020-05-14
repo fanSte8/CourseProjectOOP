@@ -15,7 +15,7 @@ namespace Shapes
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[0] = value;
@@ -27,30 +27,42 @@ namespace Shapes
             get => points[0];
             set => points[0] = value;
         }
-        public Point BottomRightPoint 
+
+        public Square
+            (Point first, Point second,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
         {
-            get => points[1];
-            set => points[1] = value;
+            CenterPoint = new Point(
+                (first.X + second.X) / 2,
+                (first.Y + second.Y) / 2);
+
+            points[0] = new Point(
+                Math.Min(first.X, second.X),
+                Math.Min(first.Y, second.Y));
+
+            points[1] = new Point(
+                Math.Max(first.X, second.X),
+                Math.Max(first.Y, second.Y));
+
+            sides[0] = Math.Abs(first.X - second.X);
+            
+            Type = ShapeType.Square;
         }
 
         public Square
-            (int firstX, int firstY, 
-             int secondX, int secondY)
+            (Point topLeft, double side,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
         {
             CenterPoint = new Point(
-                (firstX + secondX) / 2,
-                (firstY + secondY) / 2);
+                (topLeft.X + (int)side) / 2,
+                (topLeft.Y + (int)side) / 2);
 
-            points[0] = new Point(
-                Math.Min(firstX, secondX),
-                Math.Min(firstY, secondY));
+            TopLeftPoint = new Point(topLeft.X, topLeft.Y);
 
-            points[1] = new Point(
-                Math.Max(firstX, secondX),
-                Math.Max(firstY, secondY));
+            SideLength = side;
 
-            sides[0] = Math.Abs(firstX - secondX);
-            
             Type = ShapeType.Square;
         }
 

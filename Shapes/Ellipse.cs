@@ -15,7 +15,7 @@ namespace Shapes
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[0] = value;
@@ -30,21 +30,36 @@ namespace Shapes
             }
             set
             {
-                if (value <= 0)
-                    throw new Exception("This value can't be a negative number.");
+                if (value < 0)
+                    throw new Exception("Length value can't be a negative number.");
 
                 sides[1] = value;
             }
         }
 
         public Ellipse
-            (int centerX, int centerY,
-             int perimeterX, int perimeterY)
+            (Point center, Point perimeter,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
         {
-            sides[0] = Math.Abs(centerX - perimeterX);
-            sides[1] = Math.Abs(centerY - perimeterY);
+            SemiXAxis = Math.Abs(perimeter.X - center.X);
+            SemiYAxis = Math.Abs(perimeter.Y - center.Y);
 
-            CenterPoint = new Point(centerX, centerY);
+            CenterPoint = new Point(center.X, center.Y);
+
+            Type = ShapeType.Ellipse;
+        }
+
+        public Ellipse
+            (Point center,
+             double width, double heigth,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
+        {
+            SemiXAxis = width / 2;
+            SemiYAxis = heigth / 2;
+
+            CenterPoint = new Point(center.X, center.Y);
 
             Type = ShapeType.Ellipse;
         }

@@ -72,7 +72,9 @@ namespace Shapes
         public Triangle
             (int AX, int AY, 
              int BX, int BY,
-             int CX, int CY)
+             int CX, int CY,
+             Color fill, Color line, int w)
+            : base(fill, line, w)
         {
             points[0] = new Point(AX, AY);
             points[1] = new Point(BX, BY);
@@ -82,15 +84,15 @@ namespace Shapes
                 (points[0].X + points[1].X + points[2].X) / 3,
                 (points[0].Y + points[1].Y + points[2].Y) / 3);
 
-            sides[0] = Math.Sqrt(
+            FirstSide = Math.Sqrt(
                 Math.Pow(BX - CX, 2) +
                 Math.Pow(BY - CY, 2));
 
-            sides[1] = Math.Sqrt(
+            SecondSide = Math.Sqrt(
                 Math.Pow(CX - AX, 2) +
                 Math.Pow(CY - AY, 2));
 
-            sides[2] = Math.Sqrt(
+            ThirdSide = Math.Sqrt(
                 Math.Pow(BX - AX, 2) +
                 Math.Pow(BY - AY, 2));
 

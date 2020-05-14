@@ -123,33 +123,36 @@ namespace KP_Figures
 
                     int sqx = int.Parse(textBoxXSquare.Text);
                     int sqy = int.Parse(textBoxYSquare.Text);
-                    int side = int.Parse(textBoxSquareSide.Text);
+                    double side = double.Parse(textBoxSquareSide.Text);
 
                     shape = new Square(
-                        sqx, sqy, sqx + side, sqy + side);
+                        new Point(sqx, sqy), side,
+                        fillColor, lineColor, lineWidth);
 
                     break;
 
                 case ShapeType.Rectangle:
 
-                    int recw = int.Parse(textBoxRectangleWidth.Text);
-                    int rech = int.Parse(textBoxRectangleHeight.Text);
+                    double recw = double.Parse(textBoxRectangleWidth.Text);
+                    double rech = double.Parse(textBoxRectangleHeight.Text);
                     int recx = int.Parse(textBoxXRectangle.Text);
                     int recy = int.Parse(textBoxYRectangle.Text);
 
                     shape = new Rectangle(
-                        recx, recy, recx + recw, recy + rech);
+                        new Point(recx, recy), recw, rech,
+                        fillColor, lineColor, lineWidth);
 
                     break;
 
                 case ShapeType.Circle:
 
-                    int r = int.Parse(textBoxCircleRadius.Text);
+                    double r = double.Parse(textBoxCircleRadius.Text);
                     int ccx = int.Parse(textBoxXCircle.Text);
                     int ccy = int.Parse(textBoxYCircle.Text);
 
                     shape = new Circle(
-                        ccx, ccy, ccx + r, ccy);
+                        new Point(ccx, ccy), r,
+                        fillColor, lineColor, lineWidth);
 
                     break;
 
@@ -157,11 +160,12 @@ namespace KP_Figures
 
                     int ecx = int.Parse(textBoxXEllipse.Text);
                     int ecy = int.Parse(textBoxYEllipse.Text);
-                    int eh = int.Parse(textBoxEllipseHeight.Text) / 2;
-                    int ew = int.Parse(textBoxEllipseWidth.Text) / 2;
+                    double eh = double.Parse(textBoxEllipseHeight.Text) / 2;
+                    double ew = double.Parse(textBoxEllipseWidth.Text) / 2;
 
                     shape = new Ellipse(
-                        ecx, ecy, ecx + ew, ecy + eh);
+                        new Point(ecx, ecy), ew, eh,
+                        fillColor, lineColor, lineWidth);
 
                     break;
 
@@ -175,7 +179,8 @@ namespace KP_Figures
                     int cy = int.Parse(textBoxYTriangleThird.Text);
 
                     shape = new Triangle(
-                        ax, ay, bx, by, cx, cy);
+                        ax, ay, bx, by, cx, cy,
+                        fillColor, lineColor, lineWidth);
 
                     break;
             }
@@ -227,31 +232,20 @@ namespace KP_Figures
             ShapeEditor se = new ShapeEditor(st);
 
             if (se.ShowDialog() == DialogResult.OK)
-            {
-                se.Shape.LineColor = se.lineColor;
-                se.Shape.FillColor = se.fillColor;
-                se.Shape.LineWidth = se.lineWidth;
-
                 return se.Shape;
-            }
-
             return null;
         }
 
         public static Shape EditShape(Shape s)
         {
-            int ord = s.Order;
+            int order = s.Order;
 
             ShapeEditor se = new ShapeEditor(s.Type);
             se.Shape = s;
 
             if (se.ShowDialog() == DialogResult.OK)
             {
-                se.Shape.LineWidth = se.lineWidth;
-                se.Shape.LineColor = se.lineColor;
-                se.Shape.FillColor = se.fillColor;
-                se.Shape.Order = ord;
-
+                se.Shape.Order = order;
                 return se.Shape;
             }
 

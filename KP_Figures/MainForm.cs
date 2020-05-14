@@ -13,7 +13,7 @@ namespace KP_Figures
     {
         private List<Shape> shapes = new List<Shape>();
         private List<Shape> selectShapes = new List<Shape>();
-        private Tool selectTool = Tool.NotSelected;
+        private Tool selectTool = Tool.SelectSingle;
         private bool canvasTrackingMouse = false;
         private Point startPoint;
         private List<Point> trianglePoints = new List<Point>();
@@ -205,7 +205,7 @@ namespace KP_Figures
             SelectShapeInfo.Text = "";
 
             UpdateForm();
-            selectTool = Tool.NotSelected;
+            selectTool = Tool.SelectSingle;
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -250,9 +250,6 @@ namespace KP_Figures
         {
             switch (selectTool)
             {
-                case Tool.NotSelected:
-                    break;
-
                 case Tool.DrawTriangle:
 
                     canvasTrackingMouse = true;
@@ -266,11 +263,9 @@ namespace KP_Figures
                         tempShape = new Triangle(
                                 trianglePoints[0].X, trianglePoints[0].Y,
                                 trianglePoints[1].X, trianglePoints[1].Y,
-                                trianglePoints[2].X, trianglePoints[2].Y);
+                                trianglePoints[2].X, trianglePoints[2].Y,
+                                fillColor, lineColor, lineWidth);
 
-                        tempShape.LineColor = lineColor;
-                        tempShape.FillColor = fillColor;
-                        tempShape.LineWidth = lineWidth;
                         AddShape(tempShape);
                         tempShape = null;
 
@@ -325,35 +320,32 @@ namespace KP_Figures
 
             switch (selectTool)
             {
-                case Tool.NotSelected:
-                    break;
-
                 case Tool.DrawSquare:
 
                     tempShape = new Square(
-                        startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y);
+                        startPoint, e.Location,
+                        fillColor, lineColor, lineWidth);
                     break;
 
                 case Tool.DrawRectangle:
 
                     tempShape = new Rectangle(
-                        startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y);
+                        startPoint, e.Location,
+                        fillColor, lineColor, lineWidth);
                     break;
 
                 case Tool.DrawCircle:
 
                     tempShape = new Circle(
-                        startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y);
+                        startPoint, e.Location,
+                        fillColor, lineColor, lineWidth);
                     break;
 
                 case Tool.DrawEllipse:
 
                     tempShape = new Ellipse(
-                        startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y);
+                        startPoint, e.Location,
+                        fillColor, lineColor, lineWidth);
                     break;
 
                 case Tool.DrawTriangle:
@@ -384,8 +376,8 @@ namespace KP_Figures
                 case Tool.SelectMultiple:
 
                     var frame = new Rectangle(
-                        startPoint.X, startPoint.Y,
-                        e.Location.X, e.Location.Y)
+                        startPoint, e.Location,
+                        Color.LightGray, Color.LightGray, 1)
                     { Solid = false };
 
                     foreach (var s in shapes)
@@ -414,9 +406,6 @@ namespace KP_Figures
         {
             switch (selectTool)
             {
-                case Tool.NotSelected:
-                    break;
-
                 case Tool.DrawTriangle:
                     break;
 

@@ -15,7 +15,7 @@ namespace Shapes
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new InvalidValueExcepion("This value can't be a negative number.");
 
                 sides[0] = value;
@@ -23,18 +23,29 @@ namespace Shapes
         }
 
         public Circle
-            (int centerX, int centerY, 
-             int perimeterX, int perimeterY)
+            (Point center, Point perimeter,
+             Color fill, Color line, int w)
+            :base(fill, line, w)
         {
-            sides[0] = Math.Sqrt(
-                Math.Pow(centerX - perimeterX, 2) +
-                Math.Pow(centerY - perimeterY, 2));
+            Radius = Math.Sqrt(
+                Math.Pow(center.X - perimeter.X, 2) +
+                Math.Pow(center.Y - perimeter.Y, 2));
 
-            CenterPoint = new Point(centerX, centerY);
+            CenterPoint = new Point(center.X, center.Y);
 
             Type = ShapeType.Circle;
         }
         
+        public Circle(
+            Point center, double radius,
+            Color fill, Color line, int w)
+            :base(fill, line, w)
+        {
+            Radius = radius;
+            CenterPoint = new Point(center.X, center.Y);
+
+            Type = ShapeType.Circle;
+        }
         public override void DrawShape(Graphics g)
         {
             Brush brush;
