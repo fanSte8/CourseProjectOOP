@@ -160,8 +160,8 @@ namespace KP_Figures
 
                     int ecx = int.Parse(textBoxXEllipse.Text);
                     int ecy = int.Parse(textBoxYEllipse.Text);
-                    double eh = double.Parse(textBoxEllipseHeight.Text) / 2;
-                    double ew = double.Parse(textBoxEllipseWidth.Text) / 2;
+                    double eh = double.Parse(textBoxEllipseHeight.Text);
+                    double ew = double.Parse(textBoxEllipseWidth.Text);
 
                     shape = new Ellipse(
                         new Point(ecx, ecy), ew, eh,
