@@ -36,8 +36,6 @@ namespace Shapes
 
         public abstract double Circumference { get; }
 
-        public abstract void DrawShape(Graphics g);
-
         public abstract bool ContainsPoint(Point p);
 
         public abstract void Move(int changeX, int changeY);

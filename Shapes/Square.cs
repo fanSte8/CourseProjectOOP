@@ -75,33 +75,6 @@ namespace Shapes
             Type = ShapeType.Square;
         }
 
-        public override void DrawShape(Graphics g)
-        {
-            Brush brush;
-
-            if (IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        FillColor.R > 125 ? 0 : 255,
-                        FillColor.G > 125 ? 0 : 255,
-                        FillColor.B > 125 ? 0 : 255),
-                    FillColor);
-            else
-                brush = new SolidBrush(FillColor);
-
-            g.FillRectangle(brush,
-                points[0].X, points[0].Y,
-                (float)sides[0], (float)sides[0]);
-
-            brush.Dispose();
-
-            using (var pen = new Pen(LineColor, LineWidth))
-                g.DrawRectangle(pen,
-                    points[0].X, points[0].Y,
-                    (float)sides[0], (float)sides[0]);
-        }
-
         public override double Area
         {
             get => sides[0] * sides[0];

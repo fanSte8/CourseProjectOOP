@@ -63,32 +63,6 @@ namespace Shapes
 
             Type = ShapeType.Ellipse;
         }
-        public override void DrawShape(Graphics g)
-        {
-            Brush brush;
-
-            if (IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        FillColor.R > 125 ? 0 : 255,
-                        FillColor.G > 125 ? 0 : 255,
-                        FillColor.B > 125 ? 0 : 255),
-                    FillColor);
-            else
-                brush = new SolidBrush(FillColor);      
-
-            g.FillEllipse(brush,
-                CenterPoint.X - (int)sides[0], CenterPoint.Y - (int)sides[1],
-                2 * (float)sides[0], 2 * (float)sides[1]);
-
-            brush.Dispose();
-
-            using (var pen = new Pen(LineColor, LineWidth))
-                g.DrawEllipse(pen,
-                    CenterPoint.X - (int)sides[0], CenterPoint.Y - (int)sides[1],
-                    2 * (float)sides[0], 2 * (float)sides[1]);
-        }
 
         public override double Area
         {

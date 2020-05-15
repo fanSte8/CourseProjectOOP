@@ -27,11 +27,9 @@ namespace KP_Figures
         {
             InitializeComponent();
 
-            typeof(Panel).InvokeMember("DoubleBuffered",
-            BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
-            null, Canvas, new object[] { true });
-
-            
+            typeof(Panel)
+                .GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
+                .SetValue(Canvas, true);
         }
 
         private void AddShape(Shape shape)
@@ -208,11 +206,7 @@ namespace KP_Figures
         {
             shapes.Clear();
             selectShapes.Clear();
-
-            SelectShapeInfo.Text = "";
-
             UpdateForm();
-            selectTool = Tool.SelectSingle;
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {

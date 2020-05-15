@@ -98,37 +98,6 @@ namespace Shapes
 
             Type = ShapeType.Triangle;
         }
-        public override void DrawShape(Graphics g)
-        {
-            Brush brush;
-            if (IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        FillColor.R > 125 ? 0 : 255,
-                        FillColor.G > 125 ? 0 : 255,
-                        FillColor.B > 125 ? 0 : 255),
-                    FillColor);
-            else
-                brush = new SolidBrush(FillColor);
-
-            g.FillPolygon(brush, new Point[]
-            {
-                points[0],
-                points[1],
-                points[2]
-            });
-
-            brush.Dispose();
-
-            using (var pen = new Pen(LineColor, LineWidth))
-                g.DrawPolygon(pen, new Point[]
-                {
-                    points[0],
-                    points[1],
-                    points[2]
-                });
-        }
 
         public override double Area
         {
