@@ -46,8 +46,6 @@
             this.selectColorDialog = new System.Windows.Forms.ColorDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.selectShpaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.singleShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.multipleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -239,26 +237,10 @@
             // 
             // selectShpaeToolStripMenuItem
             // 
-            this.selectShpaeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.singleShapeToolStripMenuItem,
-            this.multipleShapesToolStripMenuItem});
             this.selectShpaeToolStripMenuItem.Name = "selectShpaeToolStripMenuItem";
             this.selectShpaeToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.selectShpaeToolStripMenuItem.Text = "Select";
-            // 
-            // singleShapeToolStripMenuItem
-            // 
-            this.singleShapeToolStripMenuItem.Name = "singleShapeToolStripMenuItem";
-            this.singleShapeToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.singleShapeToolStripMenuItem.Text = "Single shape";
-            this.singleShapeToolStripMenuItem.Click += new System.EventHandler(this.singleShapeToolStripMenuItem_Click);
-            // 
-            // multipleShapesToolStripMenuItem
-            // 
-            this.multipleShapesToolStripMenuItem.Name = "multipleShapesToolStripMenuItem";
-            this.multipleShapesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.multipleShapesToolStripMenuItem.Text = "Multiple shapes";
-            this.multipleShapesToolStripMenuItem.Click += new System.EventHandler(this.multipleShapesToolStripMenuItem_Click);
+            this.selectShpaeToolStripMenuItem.Click += new System.EventHandler(this.SelectShpaeToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
@@ -383,8 +365,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem selectShpaeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem singleShapeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem multipleShapesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;

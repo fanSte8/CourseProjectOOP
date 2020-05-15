@@ -14,8 +14,9 @@ namespace KP_Figures
     {
         private List<Shape> shapes = new List<Shape>();
         private List<Shape> selectShapes = new List<Shape>();
-        private Tool selectTool = Tool.SelectSingle;
+        private Tool selectTool = Tool.Select;
         private bool canvasTrackingMouse = false;
+        private bool selectMultiple = false;
         private Point startPoint;
         private List<Point> trianglePoints = new List<Point>();
         private Shape tempShape = null;
@@ -189,14 +190,9 @@ namespace KP_Figures
 
         //Tool strip menu items
 
-        private void singleShapeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SelectShpaeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectTool = Tool.SelectSingle;
-        }
-
-        private void multipleShapesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            selectTool = Tool.SelectMultiple;
+            selectTool = Tool.Select;
         }
         private void moveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -275,7 +271,7 @@ namespace KP_Figures
 
                     break;
 
-                case Tool.SelectSingle:
+                case Tool.Select:
 
                     foreach (var s in selectShapes)
                         s.IsSelect = false;
@@ -290,6 +286,11 @@ namespace KP_Figures
                     {
                         selectShape.IsSelect = true;
                         selectShapes.Add(selectShape);
+                    }
+                    else
+                    {
+                        selectMultiple = true;
+                        goto default;
                     }
 
                     break;
@@ -374,7 +375,7 @@ namespace KP_Figures
 
                     break;
 
-                case Tool.SelectMultiple:
+                case Tool.Select:
 
                     var frame = new Rectangle(
                         startPoint, e.Location,
@@ -410,16 +411,17 @@ namespace KP_Figures
                 case Tool.DrawTriangle:
                     break;
 
-                case Tool.SelectSingle:
-                    break;
+                case Tool.Select:
 
-                case Tool.SelectMultiple:
+                    if (!selectMultiple)
+                        break;
 
                     selectShapes = shapes
                         .Where(c => c.IsSelect)
                         .ToList();
 
                     canvasTrackingMouse = false;
+                    selectMultiple = false;
 
                     break;
 

@@ -39,20 +39,21 @@ namespace Shapes
              Color fill, Color line, int w)
             : base(fill, line, w)
         {
-            CenterPoint = new Point(
-                (first.X + second.X) / 2,
-                (first.Y + second.Y) / 2);
+            SideLength = Math.Abs(first.X - second.X);
 
             TopLeft = new Point(
                 Math.Min(first.X, second.X),
                 Math.Min(first.Y, second.Y));
 
             BottomRight = new Point(
-                Math.Max(first.X, second.X),
-                Math.Max(first.Y, second.Y));
+                first.X + (int)SideLength,
+                first.Y + (int)SideLength);
 
-            SideLength = Math.Abs(first.X - second.X);
-            
+            CenterPoint = new Point(
+                (first.X + second.X) / 2,
+                (first.Y + second.Y) / 2);
+
+
             Type = ShapeType.Square;
         }
 

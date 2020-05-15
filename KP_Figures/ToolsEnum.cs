@@ -13,8 +13,7 @@ namespace KP_Figures
         DrawCircle,
         DrawEllipse,
         DrawTriangle,
-        SelectSingle,
-        SelectMultiple,
+        Select,
         MoveShape
     }
 }
