@@ -28,6 +28,9 @@ namespace KP_Figures
         {
             InitializeComponent();
 
+            if (!System.IO.Directory.Exists(@"D:/Images"))
+                System.IO.Directory.CreateDirectory(@"D:/Images");
+
             typeof(Panel)
                 .GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
                 .SetValue(Canvas, true);
@@ -210,14 +213,14 @@ namespace KP_Figures
                 s.IsSelect = false;
             selectShapes.Clear();
 
-            ReadWriteShapes.SaveShapes(shapes);
+            ShapeSerializer.Save(shapes);
 
             Canvas.Refresh();
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<Shape> load = ReadWriteShapes.LoadShapes();
+            List<Shape> load = ShapeSerializer.Open();
 
             if (load != null)
                 shapes = load;
