@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using Shapes;
-using Rectangle = Shapes.Rectangle;
-using Emgu;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
-using System.Windows.Forms;
 
 namespace KP_Figures
 {
