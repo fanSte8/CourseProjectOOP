@@ -373,15 +373,22 @@ namespace KP_Figures
                     {
                         if (trianglePoints.Count == 1)
                         {
-                            using (var pen = new Pen(Color.Gray, 2))
+                            using (var pen = new Pen(lineColor, lineWidth))
                                 g.DrawLine(pen,
                                     trianglePoints[0].X, trianglePoints[0].Y,
                                     e.Location.X, e.Location.Y);
                         }
                         else if (trianglePoints.Count == 2)
                         {
-                            using (var brush = new SolidBrush(Color.LightGray))
+                            using (var brush = new SolidBrush(fillColor))
                                 g.FillPolygon(brush, new Point[]
+                                {
+                                    trianglePoints[0],
+                                    trianglePoints[1],
+                                    e.Location
+                                });
+                            using (var pen = new Pen(lineColor, lineWidth))
+                                g.DrawPolygon(pen, new Point[]
                                 {
                                     trianglePoints[0],
                                     trianglePoints[1],
@@ -441,6 +448,9 @@ namespace KP_Figures
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right)
+                return;
+
             switch (selectTool)
             {
                 case Tool.DrawTriangle:
