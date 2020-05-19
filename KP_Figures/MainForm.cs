@@ -14,11 +14,12 @@ namespace KP_Figures
     {
         private List<Shape> shapes = new List<Shape>();
         private List<Shape> selectShapes = new List<Shape>();
+        private List<Point> trianglePoints = new List<Point>();
+        private List<Point> shapePoints = new List<Point>();
         private Tool selectTool = Tool.Select;
         private bool canvasTrackingMouse = false;
         private bool selectMultiple = false;
         private Point startPoint;
-        private List<Point> trianglePoints = new List<Point>();
         private Shape tempShape = null;
         private Color fillColor = Color.White;
         private Color lineColor = Color.Black;
@@ -141,6 +142,10 @@ namespace KP_Figures
                     AddShape(newShape);
             }
         }
+        private void ButtonPencil_Click(object sender, EventArgs e)
+        {
+            selectTool = Tool.PencilDraw;
+        }
         private void buttonSetWidth_Click(object sender, EventArgs e)
         {
             int w;
@@ -248,6 +253,9 @@ namespace KP_Figures
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right)
+                return;
+
             switch (selectTool)
             {
                 case Tool.DrawTriangle:
@@ -261,9 +269,9 @@ namespace KP_Figures
                         canvasTrackingMouse = false;
 
                         tempShape = new Triangle(
-                                trianglePoints[0].X, trianglePoints[0].Y,
-                                trianglePoints[1].X, trianglePoints[1].Y,
-                                trianglePoints[2].X, trianglePoints[2].Y,
+                                trianglePoints[0],
+                                trianglePoints[1],
+                                trianglePoints[2],
                                 fillColor, lineColor, lineWidth);
 
                         AddShape(tempShape);
@@ -305,6 +313,12 @@ namespace KP_Figures
 
                     break;
 
+                case Tool.PencilDraw:
+
+                    shapePoints.Clear();
+                    shapePoints.Add(e.Location);
+                    goto default;
+
                 default:
 
                     canvasTrackingMouse = true;
@@ -321,7 +335,8 @@ namespace KP_Figures
             if (!canvasTrackingMouse)
                 return;
 
-            Canvas.Refresh();
+            if (selectTool != Tool.PencilDraw)
+                Canvas.Refresh();
 
             switch (selectTool)
             {
@@ -401,6 +416,24 @@ namespace KP_Figures
                     startPoint = e.Location;
 
                     break;
+
+                case Tool.PencilDraw:
+
+                    using (var g = Canvas.CreateGraphics())
+                    {
+                        using (var p = new Pen(Color.Black, 3))
+                        {
+                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                            p.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+
+                            g.DrawLine(p, startPoint, e.Location);
+                        }
+                    }
+
+                    shapePoints.Add(e.Location);
+                    startPoint = e.Location;
+
+                    break;
             }
 
             using (var g = Canvas.CreateGraphics())
@@ -428,6 +461,61 @@ namespace KP_Figures
 
                     break;
 
+                case Tool.PencilDraw:
+
+                    var res = ShapeDetector.Check(shapePoints, Canvas.Width, Canvas.Height);
+
+                    switch (res.Item1)
+                    {
+                        case ShapeType.Triangle:
+
+                            tempShape = new Triangle(
+                                res.Item2[0],
+                                res.Item2[1],
+                                res.Item2[2],
+                                fillColor, lineColor, lineWidth);
+
+                            break;
+
+                        case ShapeType.Circle:
+
+                            tempShape = new Circle(
+                                    res.Item2[0],
+                                    res.Item2[1],
+                                    fillColor, lineColor, lineWidth);
+
+                            break;
+
+                        case ShapeType.Ellipse:
+
+                            tempShape = new Ellipse(
+                                res.Item2[0],
+                                res.Item2[1],
+                                fillColor, lineColor, lineWidth);
+
+                            break;
+
+                        case ShapeType.Square:
+
+                            tempShape = new Square(
+                                res.Item2[0],
+                                res.Item2[1],
+                                fillColor, lineColor, lineWidth);
+
+                            break;
+
+                        case ShapeType.Rectangle:
+
+                            tempShape = new Rectangle(
+                                res.Item2[0],
+                                res.Item2[1],
+                                fillColor, lineColor, lineWidth);
+
+                            break;
+                    }
+
+                    goto default;
+
                 default:
 
                     canvasTrackingMouse = false;
@@ -440,6 +528,7 @@ namespace KP_Figures
                         AddShape(tempShape);
                         tempShape = null;
                     }
+                    
 
                     break;
             }

@@ -12,6 +12,7 @@ namespace Shapes
         Rectangle,
         Circle,
         Ellipse,
-        Triangle
+        Triangle,
+        None
     }
 }

@@ -179,7 +179,9 @@ namespace KP_Figures
                     int cy = int.Parse(textBoxYTriangleThird.Text);
 
                     shape = new Triangle(
-                        ax, ay, bx, by, cx, cy,
+                        new Point(ax, ay),
+                        new Point(bx, by),
+                        new Point(cx, cy),
                         fillColor, lineColor, lineWidth);
 
                     break;

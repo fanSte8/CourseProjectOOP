@@ -70,31 +70,29 @@ namespace Shapes
         }
 
         public Triangle
-            (int AX, int AY, 
-             int BX, int BY,
-             int CX, int CY,
+            (Point A, Point B, Point C,
              Color fill, Color line, int w)
             : base(fill, line, w)
         {
-            points[0] = new Point(AX, AY);
-            points[1] = new Point(BX, BY);
-            points[2] = new Point(CX, CY);
+            points[0] = A;
+            points[1] = B;
+            points[2] = C;
 
             CenterPoint = new Point(
-                (points[0].X + points[1].X + points[2].X) / 3,
-                (points[0].Y + points[1].Y + points[2].Y) / 3);
+                (A.X + B.X + C.X) / 3,
+                (A.Y + B.Y + C.Y) / 3);
 
             FirstSide = Math.Sqrt(
-                Math.Pow(BX - CX, 2) +
-                Math.Pow(BY - CY, 2));
+                Math.Pow(B.X - C.X, 2) +
+                Math.Pow(B.Y - C.Y, 2));
 
             SecondSide = Math.Sqrt(
-                Math.Pow(CX - AX, 2) +
-                Math.Pow(CY - AY, 2));
+                Math.Pow(C.X - A.X, 2) +
+                Math.Pow(C.Y - A.Y, 2));
 
             ThirdSide = Math.Sqrt(
-                Math.Pow(BX - AX, 2) +
-                Math.Pow(BY - AY, 2));
+                Math.Pow(B.X - A.X, 2) +
+                Math.Pow(B.Y - A.Y, 2));
 
             Type = ShapeType.Triangle;
         }

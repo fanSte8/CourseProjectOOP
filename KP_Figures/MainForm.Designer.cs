@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelShapes = new System.Windows.Forms.Panel();
+            this.buttonPencil = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonSetWidth = new System.Windows.Forms.Button();
             this.textBoxLineWidth = new System.Windows.Forms.TextBox();
@@ -64,6 +65,7 @@
             // panelShapes
             // 
             this.panelShapes.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelShapes.Controls.Add(this.buttonPencil);
             this.panelShapes.Controls.Add(this.label4);
             this.panelShapes.Controls.Add(this.buttonSetWidth);
             this.panelShapes.Controls.Add(this.textBoxLineWidth);
@@ -83,6 +85,18 @@
             this.panelShapes.Name = "panelShapes";
             this.panelShapes.Size = new System.Drawing.Size(1167, 28);
             this.panelShapes.TabIndex = 0;
+            // 
+            // buttonPencil
+            // 
+            this.buttonPencil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPencil.Location = new System.Drawing.Point(144, 4);
+            this.buttonPencil.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonPencil.Name = "buttonPencil";
+            this.buttonPencil.Size = new System.Drawing.Size(48, 20);
+            this.buttonPencil.TabIndex = 14;
+            this.buttonPencil.Text = "Pencil";
+            this.buttonPencil.UseVisualStyleBackColor = true;
+            this.buttonPencil.Click += new System.EventHandler(this.ButtonPencil_Click);
             // 
             // label4
             // 
@@ -375,6 +389,7 @@
         private System.Windows.Forms.Panel Canvas;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.Button buttonPencil;
     }
 }
 

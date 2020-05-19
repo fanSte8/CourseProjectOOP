@@ -14,6 +14,7 @@ namespace KP_Figures
         DrawEllipse,
         DrawTriangle,
         Select,
-        MoveShape
+        MoveShape,
+        PencilDraw
     }
 }
