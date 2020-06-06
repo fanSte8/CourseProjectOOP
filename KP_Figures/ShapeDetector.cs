@@ -32,6 +32,9 @@ namespace KP_Figures
                 Emgu.CV.CvEnum.RetrType.External,
                 Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);
 
+            if (contours.Size == 0)
+                return (ShapeType.None, null);
+
             double perimeter = CvInvoke.ArcLength(contours[0], true);
 
             var polygon = new VectorOfPoint();

@@ -58,6 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Painting.cs" />
+    <Compile Include="SaveAsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveAsForm.Designer.cs">
+      <DependentUpon>SaveAsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShapeDetector.cs" />
     <Compile Include="ShapeEditor.cs">
       <SubType>Form</SubType>
@@ -87,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SaveAsForm.resx">
+      <DependentUpon>SaveAsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShapeEditor.resx">
       <DependentUpon>ShapeEditor.cs</DependentUpon>
     </EmbeddedResource>

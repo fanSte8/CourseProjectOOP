@@ -199,18 +199,16 @@ namespace KP_Figures
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (var s in shapes)
-                s.IsSelect = false;
-            selectShapes.Clear();
-
-            ShapeSerializer.Save(shapes);
-
-            Canvas.Refresh();
+            var saf = new SaveAsForm(shapes, this.Width, this.Height);
+            saf.Show();
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            shapes = ShapeSerializer.Open();
+            var load = ShapeSerializer.Open();
+
+            if (load != null)
+                shapes = load;
 
             UpdateForm();
         }
