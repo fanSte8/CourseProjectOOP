@@ -19,7 +19,7 @@ namespace KP_Figures
             if (!CreateBitmap(canvasWidth, canvasHeigth, polygonPoints))
                 return (ShapeType.None, null);
 
-            Image<Bgr, byte> img = new Image<Bgr, byte>("IMAGE.bmp");
+            Image<Bgr, byte> img = new Image<Bgr, byte>(@"IMAGE.bmp");
             Image<Gray, byte> processed = img
                 .Convert<Gray, byte>()
                 .SmoothGaussian(5)
@@ -28,8 +28,8 @@ namespace KP_Figures
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
             Mat m = new Mat();
 
-            CvInvoke.FindContours(processed, contours, m,
-                Emgu.CV.CvEnum.RetrType.External,
+            CvInvoke.FindContours(
+                processed, contours, m, Emgu.CV.CvEnum.RetrType.External,
                 Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);
 
             if (contours.Size == 0)
@@ -91,7 +91,7 @@ namespace KP_Figures
                 Math.Pow(points[0].X - points[last].X, 2) +
                 Math.Pow(points[0].Y - points[last].Y, 2));
 
-            return distance < 10;
+            return distance < 20;
         }
 
         private static (ShapeType, List<Point>) CircleOrEllipse(Point center, double perimeter, List<Point> points)
