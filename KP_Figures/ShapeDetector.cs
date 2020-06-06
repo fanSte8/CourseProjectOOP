@@ -19,20 +19,26 @@ namespace KP_Figures
             if (!CreateBitmap(canvasWidth, canvasHeigth, polygonPoints))
                 return (ShapeType.None, null);
 
-            Image<Bgr, byte> img = new Image<Bgr, byte>("IMAGE");
-            Image<Gray, byte> gray = img
+            Image<Bgr, byte> img = new Image<Bgr, byte>("IMAGE.bmp");
+            Image<Gray, byte> processed = img
                 .Convert<Gray, byte>()
                 .SmoothGaussian(5)
-                .ThresholdBinaryInv(new Gray(240), new Gray(255));
+                .Canny(240, 200);
 
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
             Mat m = new Mat();
 
-            CvInvoke.FindContours(gray, contours, m, Emgu.CV.CvEnum.RetrType.External, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);
+            CvInvoke.FindContours(processed, contours, m,
+                Emgu.CV.CvEnum.RetrType.External,
+                Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);
 
             double perimeter = CvInvoke.ArcLength(contours[0], true);
-            var approx = new VectorOfPoint();
-            CvInvoke.ApproxPolyDP(contours[0], approx, 0.04 * perimeter, true);
+
+            var polygon = new VectorOfPoint();
+            CvInvoke.ApproxPolyDP(contours[0], polygon, 0.02 * perimeter, true);
+
+            if (!CvInvoke.IsContourConvex(polygon))
+                return (ShapeType.None, null);
 
             var moments = CvInvoke.Moments(contours[0]);
             int x = (int)(moments.M10 / moments.M00);
@@ -41,18 +47,15 @@ namespace KP_Figures
 
             List<Point> points = new List<Point>();
 
-            for (int i = 0; i < approx.Size; i++)
-                points.Add(new Point(approx[i].X, approx[i].Y));
+            for (int i = 0; i < polygon.Size; i++)
+                points.Add(new Point(polygon[i].X, polygon[i].Y));
 
             if (points.Count == 3)
                 return (ShapeType.Triangle, points);
             else if (points.Count == 4)
-                return RectangleOrSquare(points, center);
+                return RectangleOrSquare(center, perimeter, points);
             else if (points.Count > 4)
-            {
-                int r = (int)(perimeter / (2 * Math.PI));
-                return CircleOrEllipse(center, r, perimeter, points);
-            }
+                return CircleOrEllipse(center, perimeter, points);
 
             return (ShapeType.None, null);
         }
@@ -70,13 +73,11 @@ namespace KP_Figures
 
                 using (var p = new SolidBrush(Color.Black))
                 {
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
                     g.FillPolygon(p, points.ToArray());
                 }
             }
 
-            bmp.Save("IMAGE", System.Drawing.Imaging.ImageFormat.Bmp);
+            bmp.Save("IMAGE.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
             return true;
         }
 
@@ -90,11 +91,13 @@ namespace KP_Figures
             return distance < 10;
         }
 
-        private static (ShapeType, List<Point>) CircleOrEllipse(Point center, int radius, double perimeter, List<Point> points)
+        private static (ShapeType, List<Point>) CircleOrEllipse(Point center, double perimeter, List<Point> points)
         {
-            double circleThreshold = 0.1;
+            double circleThreshold = 0.02;
             double maxDistance = 0;
             Point BRPoint = new Point(-1, -1);
+
+            double radius = perimeter / (2 * Math.PI);
 
             foreach (var p in points)
             {
@@ -111,7 +114,7 @@ namespace KP_Figures
                 List<Point> circlePoints = new List<Point>()
                 {
                     center,
-                    new Point(center.X + radius, center.Y)
+                    new Point(center.X + (int)radius, center.Y)
                 };
 
                 return (ShapeType.Circle, circlePoints);
@@ -136,9 +139,9 @@ namespace KP_Figures
             }
         }
 
-        private static (ShapeType, List<Point>) RectangleOrSquare(List<Point> points, Point center)
+        private static (ShapeType, List<Point>) RectangleOrSquare(Point center, double perimeter, List<Point> points)
         {
-            int percision = 20;
+            double percision = 0.02 * perimeter;
             double squareThreshold = 0.1;
 
             List<double> sides = new List<double>()

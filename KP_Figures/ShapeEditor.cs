@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Shapes;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Shapes;
 using Rectangle = Shapes.Rectangle;
 
 namespace KP_Figures
@@ -124,11 +124,11 @@ namespace KP_Figures
                     int sqx = int.Parse(textBoxXSquare.Text);
                     int sqy = int.Parse(textBoxYSquare.Text);
                     double side = double.Parse(textBoxSquareSide.Text);
-                    
+
                     shape = new Square(
                         new Point(sqx, sqy), side,
                         fillColor, lineColor, lineWidth);
-                    
+
                     break;
 
                 case ShapeType.Rectangle:
@@ -224,7 +224,10 @@ namespace KP_Figures
             }
 
             if (int.TryParse(textBoxLineWidth.Text, out w))
-                lineWidth = w;
+            {
+                if (w <= 0)
+                    MessageBox.Show("Width must be a positive non-zero value!");
+            }
             else
                 MessageBox.Show("Invalid input");
         }

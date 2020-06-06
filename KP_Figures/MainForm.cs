@@ -40,10 +40,7 @@ namespace KP_Figures
         {
             shape.IsSelect = true;
 
-            shape.Order = shapes
-                .Select(s => s.Order)
-                .OrderBy(o => o)
-                .LastOrDefault() + 1;
+            shape.Order = shapes.Count == 0 ? 0 : shapes.Max(m => m.Order) + 1;
 
             foreach (var s in selectShapes)
                 s.IsSelect = false;
@@ -72,6 +69,15 @@ namespace KP_Figures
             editToolStripMenuItem.Enabled = selectShapes.Count == 1 ? true : false;
         }
 
+        private void CreateAndAddShape(ShapeType st)
+        {
+            var newShape = ShapeEditor.CreateShape(st);
+
+            if (newShape != null)
+                AddShape(newShape);
+        }
+    
+
         //Buttons
 
         private void drawSquare_MouseDown(object sender, MouseEventArgs e)
@@ -79,12 +85,7 @@ namespace KP_Figures
             if (e.Button == MouseButtons.Left)
                 selectTool = Tool.DrawSquare;
             else if (e.Button == MouseButtons.Right)
-            {
-                var newShape = ShapeEditor.CreateShape(ShapeType.Square);
-
-                if (newShape != null)
-                    AddShape(newShape);
-            }
+                CreateAndAddShape(ShapeType.Square);
         }
 
         private void drawRectangle_MouseDown(object sender, MouseEventArgs e)
@@ -92,12 +93,7 @@ namespace KP_Figures
             if (e.Button == MouseButtons.Left)
                 selectTool = Tool.DrawRectangle;
             else if (e.Button == MouseButtons.Right)
-            {
-                var newShape = ShapeEditor.CreateShape(ShapeType.Rectangle);
-
-                if (newShape != null)
-                    AddShape(newShape);
-            }
+                CreateAndAddShape(ShapeType.Rectangle);
         }
 
         private void drawCircle_MouseDown(object sender, MouseEventArgs e)
@@ -105,12 +101,7 @@ namespace KP_Figures
             if (e.Button == MouseButtons.Left)
                 selectTool = Tool.DrawCircle;
             else if (e.Button == MouseButtons.Right)
-            {
-                var newShape = ShapeEditor.CreateShape(ShapeType.Circle);
-
-                if (newShape != null)
-                    AddShape(newShape);
-            }
+                CreateAndAddShape(ShapeType.Circle);
         }
 
         private void drawEllipse_MouseDown(object sender, MouseEventArgs e)
@@ -118,12 +109,7 @@ namespace KP_Figures
             if (e.Button == MouseButtons.Left)
                 selectTool = Tool.DrawEllipse;
             else if (e.Button == MouseButtons.Right)
-            {
-                var newShape = ShapeEditor.CreateShape(ShapeType.Ellipse);
-
-                if (newShape != null)
-                    AddShape(newShape);
-            }
+                CreateAndAddShape(ShapeType.Ellipse);
         }
 
         private void drawTriangle_MouseDown(object sender, MouseEventArgs e)
@@ -134,12 +120,7 @@ namespace KP_Figures
                 selectTool = Tool.DrawTriangle;
             }
             else if (e.Button == MouseButtons.Right)
-            {
-                var newShape = ShapeEditor.CreateShape(ShapeType.Triangle);
-
-                if (newShape != null)
-                    AddShape(newShape);
-            }
+                CreateAndAddShape(ShapeType.Triangle);
         }
         private void ButtonPencil_Click(object sender, EventArgs e)
         {
@@ -156,7 +137,12 @@ namespace KP_Figures
             }
 
             if (int.TryParse(textBoxLineWidth.Text, out w))
-                lineWidth = w;
+            {
+                if (w <= 0)
+                    MessageBox.Show("Width can't be a negative number!");
+                else
+                    lineWidth = w;
+            }
             else
                 MessageBox.Show("Invalid input");
         }
@@ -224,10 +210,8 @@ namespace KP_Figures
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<Shape> load = ShapeSerializer.Open();
+            shapes = ShapeSerializer.Open();
 
-            if (load != null)
-                shapes = load;
             UpdateForm();
         }
 
@@ -472,16 +456,17 @@ namespace KP_Figures
 
                 case Tool.PencilDraw:
 
-                    var res = ShapeDetector.Check(shapePoints, Canvas.Width, Canvas.Height);
+                    (ShapeType type, List<Point> points) result = 
+                        ShapeDetector.Check(shapePoints, Canvas.Width, Canvas.Height);
 
-                    switch (res.Item1)
+                    switch (result.type)
                     {
                         case ShapeType.Triangle:
 
                             tempShape = new Triangle(
-                                res.Item2[0],
-                                res.Item2[1],
-                                res.Item2[2],
+                                result.points[0],
+                                result.points[1],
+                                result.points[2],
                                 fillColor, lineColor, lineWidth);
 
                             break;
@@ -489,8 +474,8 @@ namespace KP_Figures
                         case ShapeType.Circle:
 
                             tempShape = new Circle(
-                                    res.Item2[0],
-                                    res.Item2[1],
+                                    result.points[0],
+                                    result.points[1],
                                     fillColor, lineColor, lineWidth);
 
                             break;
@@ -498,8 +483,8 @@ namespace KP_Figures
                         case ShapeType.Ellipse:
 
                             tempShape = new Ellipse(
-                                res.Item2[0],
-                                res.Item2[1],
+                                result.points[0],
+                                result.points[1],
                                 fillColor, lineColor, lineWidth);
 
                             break;
@@ -507,8 +492,8 @@ namespace KP_Figures
                         case ShapeType.Square:
 
                             tempShape = new Square(
-                                res.Item2[0],
-                                res.Item2[1],
+                                result.points[0],
+                                result.points[1],
                                 fillColor, lineColor, lineWidth);
 
                             break;
@@ -516,8 +501,8 @@ namespace KP_Figures
                         case ShapeType.Rectangle:
 
                             tempShape = new Rectangle(
-                                res.Item2[0],
-                                res.Item2[1],
+                                result.points[0],
+                                result.points[1],
                                 fillColor, lineColor, lineWidth);
 
                             break;
@@ -531,9 +516,6 @@ namespace KP_Figures
 
                     if (tempShape != null)
                     {
-                        tempShape.LineColor = lineColor;
-                        tempShape.FillColor = fillColor;
-                        tempShape.LineWidth = lineWidth;
                         AddShape(tempShape);
                         tempShape = null;
                     }

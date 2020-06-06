@@ -37,12 +37,12 @@ namespace Shapes
         }
 
         public Ellipse
-            (Point center, Point perimeter,
+            (Point center, Point bottomRight,
              Color fill, Color line, int w)
             : base(fill, line, w)
         {
-            SemiXAxis = Math.Abs(perimeter.X - center.X);
-            SemiYAxis = Math.Abs(perimeter.Y - center.Y);
+            SemiXAxis = Math.Abs(bottomRight.X - center.X);
+            SemiYAxis = Math.Abs(bottomRight.Y - center.Y);
 
             CenterPoint = center;
 

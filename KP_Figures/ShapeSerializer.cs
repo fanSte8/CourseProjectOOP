@@ -16,8 +16,8 @@ namespace KP_Figures
             SaveFileDialog sfd = new SaveFileDialog();
 
             sfd.InitialDirectory = @"D:\Images";
-            sfd.DefaultExt = ".Shapes";
-            sfd.Filter = "Shapes file|*.Shapes";
+            sfd.DefaultExt = ".shps";
+            sfd.Filter = "Shapes file|*.shps";
             sfd.Title = "Save shapes file";
 
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -34,8 +34,8 @@ namespace KP_Figures
             List<Shape> load;
 
             ofd.InitialDirectory = @"D:\Images";
-            ofd.Filter = "Shapes file|*.Shapes";
-            ofd.DefaultExt = "*.Shapes";
+            ofd.Filter = "Shapes file|*.shps";
+            ofd.DefaultExt = "*.shps";
             ofd.Title = "Open shapes file";
 
             if (ofd.ShowDialog() == DialogResult.OK)
