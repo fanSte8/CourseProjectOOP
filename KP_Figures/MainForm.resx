@@ -117,6 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonPencil.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAF1JREFUOE/lj0EOwCAIBPn/L/mJ2CUbsWoiHkzTubgujImiB3xOFqliRjbzSPaA
+        Y4u8TNMYyPVDD35v6PqwgZnBjJ50TfPMaxuNwYyeBNlTZKgBb2fjNT+Wc9ySVQuIB8p+M3IiIQAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
+  <data name="drawTriangle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAEpJREFUOE9jeEgBGIaaGRgIGE1AM379tNEM14ZHPw00o2nApZ/amrEqxS4IpZEA
+        +ZpxuRAIMKWopxkoTRBAlYIBTnuIAUNS88OHAFcxx9vFajHHAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="drawEllipse.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAEVJREFUOE9jeEgBGNVMIqCBZgYMAJVABeiiuJRiFUfhY9WGDNAUDBLNQACUxmoE
+        VnHsVkGUIgOoBCrALkokGNVMEnj4EAB+3dpQXEoolwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="drawCircle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAE1JREFUOE/djVEKACAIQ7v/Lb1JwiTCmQT5k+9z22NDHugmjw2LiKBggRPgo3AE
+        uKqTExO4QQdZSXyuSmVFR27HCch+FhYRx+KGL2WRCZ7cyn7XpKuiAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="drawRectangle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAADNJREFUOE9jeEgBGNVMIqCeZgYiAFQpGKBrhrJwgOGpmSCAKgUDAlbhB6OaSQQU
+        aH74EACe3Mp+FAlLdQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="drawSquare.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAC9JREFUOE9jeEgBGA6aGYgAUKVggK4ZysIBRjWPaqZUM0EAVQoGBKzCD4ak5ocP
+        ATWvqtqp6+dNAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="selectColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>120, 18</value>
   </metadata>
@@ -126,7 +170,6 @@
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAEAIABoBAAAVgAAABgYAAABACAAiAkAAL4EAAAgIAAAAQAgAKgQAABGDgAAMDAAAAEA

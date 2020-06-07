@@ -83,18 +83,18 @@
             this.panelShapes.Location = new System.Drawing.Point(0, 24);
             this.panelShapes.Margin = new System.Windows.Forms.Padding(4);
             this.panelShapes.Name = "panelShapes";
-            this.panelShapes.Size = new System.Drawing.Size(1167, 28);
+            this.panelShapes.Size = new System.Drawing.Size(684, 28);
             this.panelShapes.TabIndex = 0;
             // 
             // buttonPencil
             // 
             this.buttonPencil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPencil.Image = ((System.Drawing.Image)(resources.GetObject("buttonPencil.Image")));
             this.buttonPencil.Location = new System.Drawing.Point(144, 4);
             this.buttonPencil.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPencil.Name = "buttonPencil";
-            this.buttonPencil.Size = new System.Drawing.Size(48, 20);
+            this.buttonPencil.Size = new System.Drawing.Size(20, 20);
             this.buttonPencil.TabIndex = 14;
-            this.buttonPencil.Text = "Pencil";
             this.buttonPencil.UseVisualStyleBackColor = true;
             this.buttonPencil.Click += new System.EventHandler(this.ButtonPencil_Click);
             // 
@@ -180,58 +180,59 @@
             // 
             // drawTriangle
             // 
+            this.drawTriangle.Image = ((System.Drawing.Image)(resources.GetObject("drawTriangle.Image")));
             this.drawTriangle.Location = new System.Drawing.Point(116, 4);
             this.drawTriangle.Margin = new System.Windows.Forms.Padding(4);
             this.drawTriangle.Name = "drawTriangle";
             this.drawTriangle.Size = new System.Drawing.Size(20, 20);
             this.drawTriangle.TabIndex = 4;
             this.drawTriangle.UseVisualStyleBackColor = true;
-            this.drawTriangle.Paint += new System.Windows.Forms.PaintEventHandler(this.drawTriangle_Paint);
             this.drawTriangle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawTriangle_MouseDown);
             // 
             // drawEllipse
             // 
+            this.drawEllipse.Image = ((System.Drawing.Image)(resources.GetObject("drawEllipse.Image")));
             this.drawEllipse.Location = new System.Drawing.Point(88, 4);
             this.drawEllipse.Margin = new System.Windows.Forms.Padding(4);
             this.drawEllipse.Name = "drawEllipse";
             this.drawEllipse.Size = new System.Drawing.Size(20, 20);
             this.drawEllipse.TabIndex = 3;
             this.drawEllipse.UseVisualStyleBackColor = true;
-            this.drawEllipse.Paint += new System.Windows.Forms.PaintEventHandler(this.drawEllipse_Paint);
             this.drawEllipse.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawEllipse_MouseDown);
             // 
             // drawCircle
             // 
+            this.drawCircle.Image = ((System.Drawing.Image)(resources.GetObject("drawCircle.Image")));
             this.drawCircle.Location = new System.Drawing.Point(60, 4);
             this.drawCircle.Margin = new System.Windows.Forms.Padding(4);
             this.drawCircle.Name = "drawCircle";
             this.drawCircle.Size = new System.Drawing.Size(20, 20);
             this.drawCircle.TabIndex = 2;
             this.drawCircle.UseVisualStyleBackColor = true;
-            this.drawCircle.Paint += new System.Windows.Forms.PaintEventHandler(this.drawCircle_Paint);
             this.drawCircle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawCircle_MouseDown);
             // 
             // drawRectangle
             // 
+            this.drawRectangle.Image = ((System.Drawing.Image)(resources.GetObject("drawRectangle.Image")));
             this.drawRectangle.Location = new System.Drawing.Point(32, 4);
             this.drawRectangle.Margin = new System.Windows.Forms.Padding(4);
             this.drawRectangle.Name = "drawRectangle";
             this.drawRectangle.Size = new System.Drawing.Size(20, 20);
             this.drawRectangle.TabIndex = 1;
             this.drawRectangle.UseVisualStyleBackColor = true;
-            this.drawRectangle.Paint += new System.Windows.Forms.PaintEventHandler(this.drawRectangle_Paint);
             this.drawRectangle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawRectangle_MouseDown);
             // 
             // drawSquare
             // 
             this.drawSquare.AccessibleName = "";
+            this.drawSquare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.drawSquare.Image = ((System.Drawing.Image)(resources.GetObject("drawSquare.Image")));
             this.drawSquare.Location = new System.Drawing.Point(4, 4);
             this.drawSquare.Margin = new System.Windows.Forms.Padding(4);
             this.drawSquare.Name = "drawSquare";
             this.drawSquare.Size = new System.Drawing.Size(20, 20);
             this.drawSquare.TabIndex = 0;
             this.drawSquare.UseVisualStyleBackColor = true;
-            this.drawSquare.Paint += new System.Windows.Forms.PaintEventHandler(this.drawSquare_Paint);
             this.drawSquare.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawSquare_MouseDown);
             // 
             // menuStrip1
@@ -245,7 +246,7 @@
             this.clearToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1167, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -298,10 +299,10 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SelectShapeInfo,
             this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 525);
+            this.statusStrip.Location = new System.Drawing.Point(0, 387);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1167, 22);
+            this.statusStrip.Size = new System.Drawing.Size(684, 22);
             this.statusStrip.TabIndex = 0;
             // 
             // SelectShapeInfo
@@ -323,7 +324,7 @@
             this.Canvas.Location = new System.Drawing.Point(0, 52);
             this.Canvas.Margin = new System.Windows.Forms.Padding(4);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1167, 547);
+            this.Canvas.Size = new System.Drawing.Size(684, 409);
             this.Canvas.TabIndex = 1;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
             this.Canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseDown);
@@ -334,7 +335,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1167, 599);
+            this.ClientSize = new System.Drawing.Size(684, 461);
             this.Controls.Add(this.Canvas);
             this.Controls.Add(this.panelShapes);
             this.Controls.Add(this.menuStrip1);
@@ -343,9 +344,10 @@
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Draw";
+            this.Text = "Shapes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panelShapes.ResumeLayout(false);

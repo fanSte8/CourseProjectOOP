@@ -15,10 +15,11 @@ namespace KP_Figures
             BinaryFormatter formatter = new BinaryFormatter();
             SaveFileDialog sfd = new SaveFileDialog();
 
-            sfd.InitialDirectory = @"D:\Images";
+            sfd.InitialDirectory = @"D:/Shapes saves";
             sfd.DefaultExt = ".shps";
             sfd.Filter = "Shapes file|*.shps";
             sfd.Title = "Save shapes file";
+            sfd.RestoreDirectory = false;
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
@@ -33,10 +34,11 @@ namespace KP_Figures
             OpenFileDialog ofd = new OpenFileDialog();
             List<Shape> load;
 
-            ofd.InitialDirectory = @"D:\Images";
+            ofd.InitialDirectory = @"D:/Shapes saves";
             ofd.Filter = "Shapes file|*.shps";
             ofd.DefaultExt = "*.shps";
             ofd.Title = "Open shapes file";
+            ofd.RestoreDirectory = false;
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {

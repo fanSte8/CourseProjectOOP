@@ -28,8 +28,8 @@ namespace KP_Figures
         {
             InitializeComponent();
 
-            if (!System.IO.Directory.Exists(@"D:/Images"))
-                System.IO.Directory.CreateDirectory(@"D:/Images");
+            if (!System.IO.Directory.Exists(@"D:/Shapes saves"))
+                System.IO.Directory.CreateDirectory(@"D:/Shapes saves");
 
             typeof(Panel)
                 .GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
@@ -76,7 +76,12 @@ namespace KP_Figures
             if (newShape != null)
                 AddShape(newShape);
         }
-    
+
+        private void Canvas_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (var item in shapes.OrderBy(o => o.Order))
+                item.DrawShape(e.Graphics);
+        }
 
         //Buttons
 
@@ -523,54 +528,6 @@ namespace KP_Figures
             }
 
             UpdateForm();
-        }
-
-        //Painting
-
-        private void Canvas_Paint(object sender, PaintEventArgs e)
-        {
-            foreach (var item in shapes.OrderBy(o => o.Order))
-                item.DrawShape(e.Graphics);
-        }
-
-        private void drawSquare_Paint(object sender, PaintEventArgs e)
-        {
-            using (var pen = new Pen(Color.Black, 1))
-                e.Graphics.DrawRectangle(pen,
-                        4, 4, drawSquare.Width - 9, drawSquare.Height - 9);
-        }
-
-        private void drawRectangle_Paint(object sender, PaintEventArgs e)
-        {
-            using (var pen = new Pen(Color.Black, 1))
-                e.Graphics.DrawRectangle(pen,
-                        4, 6, drawSquare.Width - 9, drawSquare.Height - 13);
-        }
-
-        private void drawCircle_Paint(object sender, PaintEventArgs e)
-        {
-            using (var pen = new Pen(Color.Black, 1))
-                e.Graphics.DrawEllipse(pen,
-                    4, 4, drawSquare.Width - 9, drawSquare.Height - 9);
-        }
-
-        private void drawEllipse_Paint(object sender, PaintEventArgs e)
-        {
-            using (var pen = new Pen(Color.Black, 1))
-                e.Graphics.DrawEllipse(pen,
-                        3, 6, drawSquare.Width - 7, drawSquare.Height - 13);
-        }
-
-        private void drawTriangle_Paint(object sender, PaintEventArgs e)
-        {
-            using (var pen = new Pen(Color.Black, 1))
-                e.Graphics.DrawPolygon(pen,
-                        new Point[]
-                        {
-                        new Point(drawTriangle.Width / 2, 4),
-                        new Point(4, drawTriangle.Height - 4),
-                        new Point(drawTriangle.Width - 4, drawTriangle.Height - 4)
-                        });
         }
     }
 }
