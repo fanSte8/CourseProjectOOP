@@ -7,6 +7,15 @@ namespace KP_Figures
 {
     public static class Painting
     {
+        private static HatchBrush CreateHatchBrush(Color c)
+        {
+            return new HatchBrush(
+                    HatchStyle.BackwardDiagonal, 
+                    Color.FromArgb(
+                        c.R > 125 ? 0 : 255, 
+                        c.G > 125 ? 0 : 255, 
+                        c.B > 125 ? 0 : 255), c);
+        }
         public static void DrawShape(this Shape s, Graphics g)
         {
             switch (s.Type)
@@ -42,13 +51,7 @@ namespace KP_Figures
             Brush brush;
 
             if (s.IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        s.FillColor.R > 125 ? 0 : 255,
-                        s.FillColor.G > 125 ? 0 : 255,
-                        s.FillColor.B > 125 ? 0 : 255),
-                    s.FillColor);
+                brush = CreateHatchBrush(s.FillColor); 
             else
                 brush = new SolidBrush(s.FillColor);
 
@@ -70,18 +73,12 @@ namespace KP_Figures
                 Brush brush;
 
                 if (r.IsSelect)
-                    brush = new HatchBrush(
-                        HatchStyle.BackwardDiagonal,
-                        Color.FromArgb(
-                            r.FillColor.R > 125 ? 0 : 255,
-                            r.FillColor.G > 125 ? 0 : 255,
-                            r.FillColor.B > 125 ? 0 : 255),
-                        r.FillColor);
+                    brush = CreateHatchBrush(r.FillColor);
                 else
                     brush = new SolidBrush(r.FillColor);
 
                 g.FillRectangle(brush,
-                    r.TopLeftPoint.X, r.TopLeftPoint.Y,
+                    r.TopLeft.X, r.TopLeft.Y,
                     (float)r.Width, (float)r.Height);
 
                 brush.Dispose();
@@ -89,7 +86,7 @@ namespace KP_Figures
 
             using (var pen = new Pen(r.LineColor, r.LineWidth))
                 g.DrawRectangle(pen,
-                    r.TopLeftPoint.X, r.TopLeftPoint.Y,
+                    r.TopLeft.X, r.TopLeft.Y,
                     (float)r.Width, (float)r.Height);
         }
 
@@ -98,13 +95,7 @@ namespace KP_Figures
             Brush brush;
 
             if (c.IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        c.FillColor.R > 125 ? 0 : 255,
-                        c.FillColor.G > 125 ? 0 : 255,
-                        c.FillColor.B > 125 ? 0 : 255),
-                    c.FillColor);
+                brush = CreateHatchBrush(c.FillColor);
             else
                 brush = new SolidBrush(c.FillColor);
 
@@ -126,13 +117,7 @@ namespace KP_Figures
             Brush brush;
 
             if (e.IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        e.FillColor.R > 125 ? 0 : 255,
-                        e.FillColor.G > 125 ? 0 : 255,
-                        e.FillColor.B > 125 ? 0 : 255),
-                    e.FillColor);
+                brush = CreateHatchBrush(e.FillColor);
             else
                 brush = new SolidBrush(e.FillColor);
 
@@ -153,13 +138,7 @@ namespace KP_Figures
             Brush brush;
 
             if (t.IsSelect)
-                brush = new HatchBrush(
-                    HatchStyle.BackwardDiagonal,
-                    Color.FromArgb(
-                        t.FillColor.R > 125 ? 0 : 255,
-                        t.FillColor.G > 125 ? 0 : 255,
-                        t.FillColor.B > 125 ? 0 : 255),
-                    t.FillColor);
+                brush = CreateHatchBrush(t.FillColor);
             else
                 brush = new SolidBrush(t.FillColor);
 

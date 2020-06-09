@@ -64,6 +64,7 @@ namespace KP_Figures
                 buttonLineColor.BackColor = value.LineColor;
 
                 textBoxLineWidth.Text = value.LineWidth.ToString();
+                lineWidth = value.LineWidth;
 
                 switch (shapeType)
                 {
@@ -79,8 +80,8 @@ namespace KP_Figures
 
                         textBoxRectangleWidth.Text = ((Rectangle)value).Width.ToString();
                         textBoxRectangleHeight.Text = ((Rectangle)value).Height.ToString();
-                        textBoxXRectangle.Text = ((Rectangle)value).TopLeftPoint.X.ToString();
-                        textBoxYRectangle.Text = ((Rectangle)value).TopLeftPoint.Y.ToString();
+                        textBoxXRectangle.Text = ((Rectangle)value).TopLeft.X.ToString();
+                        textBoxYRectangle.Text = ((Rectangle)value).TopLeft.Y.ToString();
 
                         break;
 
@@ -227,6 +228,8 @@ namespace KP_Figures
             {
                 if (w <= 0)
                     MessageBox.Show("Width must be a positive non-zero value!");
+                else
+                    lineWidth = w;
             }
             else
                 MessageBox.Show("Invalid input");

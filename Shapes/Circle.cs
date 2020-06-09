@@ -4,7 +4,7 @@ using System.Drawing;
 namespace Shapes
 {
     [Serializable]
-    public class Circle : Shape
+    public class Circle : EllipseBased
     {
         public double Radius
         {
@@ -18,6 +18,7 @@ namespace Shapes
                     throw new InvalidValueExcepion("Length can't be a negative number.");
 
                 sides[0] = value;
+                sides[1] = value;
             }
         }
 
@@ -46,37 +47,11 @@ namespace Shapes
             Type = ShapeType.Circle;
         }
 
-        public override double Area
-        {
-            get => sides[0] * sides[0] * Math.PI;
-        }
-
-        public override double Circumference
-        {
-            get => 2 * sides[0] * Math.PI;
-        }
-
-        public override bool ContainsPoint(Point p)
-        {
-            double distance = Math.Sqrt(
-                Math.Pow(CenterPoint.X - p.X, 2) +
-                Math.Pow(CenterPoint.Y - p.Y, 2));
-
-            return distance < sides[0];
-        }
-
         public override string ToString()
         {
             return $"Shape: Circle, " +
                    $"Area: {Math.Round(this.Area, 2)}, " +
                    $"Circumference: {Math.Round(this.Circumference, 2)}";
         }
-        public override void Move(int changeX, int changeY)
-        {
-            CenterPoint = new Point
-                (CenterPoint.X + changeX,
-                 CenterPoint.Y + changeY);
-        }
-
     }
 }

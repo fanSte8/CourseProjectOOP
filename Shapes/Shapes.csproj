@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Circle.cs" />
+    <Compile Include="EllipseBased.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="RectangleBased.cs" />
     <Compile Include="ShapeTypeEnum.cs" />
     <Compile Include="Ellipse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
