@@ -7,8 +7,7 @@
         DrawCircle,
         DrawEllipse,
         DrawTriangle,
-        Select,
-        MoveShape,
+        Mouse,
         PencilDraw
     }
 }

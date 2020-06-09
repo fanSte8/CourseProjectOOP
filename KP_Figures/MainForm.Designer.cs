@@ -47,7 +47,6 @@
             this.selectColorDialog = new System.Windows.Forms.ColorDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.selectShpaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -239,7 +238,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectShpaeToolStripMenuItem,
-            this.moveToolStripMenuItem,
             this.editToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.loadToolStripMenuItem,
@@ -253,17 +251,9 @@
             // selectShpaeToolStripMenuItem
             // 
             this.selectShpaeToolStripMenuItem.Name = "selectShpaeToolStripMenuItem";
-            this.selectShpaeToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.selectShpaeToolStripMenuItem.Text = "Select";
+            this.selectShpaeToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.selectShpaeToolStripMenuItem.Text = "Select/Move";
             this.selectShpaeToolStripMenuItem.Click += new System.EventHandler(this.SelectShpaeToolStripMenuItem_Click);
-            // 
-            // moveToolStripMenuItem
-            // 
-            this.moveToolStripMenuItem.Enabled = false;
-            this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.moveToolStripMenuItem.Text = "Move";
-            this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -381,7 +371,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem selectShpaeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;

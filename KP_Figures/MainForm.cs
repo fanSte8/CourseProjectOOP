@@ -15,8 +15,9 @@ namespace KP_Figures
         private List<Shape> selectShapes = new List<Shape>();
         private List<Point> trianglePoints = new List<Point>();
         private List<Point> shapePoints = new List<Point>();
-        private Tool selectTool = Tool.Select;
+        private Tool selectTool = Tool.Mouse;
         private bool canvasTrackingMouse = false;
+        private bool moving = false;
         private bool selectMultiple = false;
         private Point startPoint;
         private Shape tempShape = null;
@@ -63,8 +64,6 @@ namespace KP_Figures
             Canvas.Refresh();
 
             UpdateStatusStrip();
-
-            moveToolStripMenuItem.Enabled = selectShapes.Count == 0 ? false : true;
 
             editToolStripMenuItem.Enabled = selectShapes.Count == 1 ? true : false;
         }
@@ -190,11 +189,7 @@ namespace KP_Figures
 
         private void SelectShpaeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectTool = Tool.Select;
-        }
-        private void moveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            selectTool = Tool.MoveShape;
+            selectTool = Tool.Mouse;
         }
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -239,9 +234,6 @@ namespace KP_Figures
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-                return;
-
             switch (selectTool)
             {
                 case Tool.DrawTriangle:
@@ -268,34 +260,39 @@ namespace KP_Figures
 
                     break;
 
-                case Tool.Select:
+                case Tool.Mouse:
 
-                    foreach (var s in selectShapes)
-                        s.IsSelect = false;
-                    selectShapes.Clear();
-
-                    var selectShape = shapes
-                        .Where(c => c.ContainsPoint(e.Location))
-                        .OrderBy(o => o.Order)
-                        .LastOrDefault();
-
-                    if (selectShape != null)
+                    if (e.Button == MouseButtons.Left)
                     {
-                        selectShape.IsSelect = true;
-                        selectShapes.Add(selectShape);
+
+                        foreach (var s in selectShapes)
+                            s.IsSelect = false;
+                        selectShapes.Clear();
+
+                        var selectShape = shapes
+                            .Where(c => c.ContainsPoint(e.Location))
+                            .OrderBy(o => o.Order)
+                            .LastOrDefault();
+
+                        if (selectShape != null)
+                        {
+                            selectShape.IsSelect = true;
+                            selectShapes.Add(selectShape);
+                        }
+                        else
+                        {
+                            selectMultiple = true;
+                            goto default;
+                        }
                     }
-                    else
+                    else if (e.Button == MouseButtons.Right)
                     {
-                        selectMultiple = true;
-                        goto default;
+                        if (selectShapes.Any(c => c.ContainsPoint(e.Location)))
+                        {
+                            moving = true;
+                            goto default;
+                        }
                     }
-
-                    break;
-
-                case Tool.MoveShape:
-
-                    if (selectShapes.Any(c => c.ContainsPoint(e.Location)))
-                        goto default;
 
                     break;
 
@@ -386,27 +383,27 @@ namespace KP_Figures
 
                     break;
 
-                case Tool.Select:
+                case Tool.Mouse:
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        var frame = new Rectangle(
+                            startPoint, e.Location,
+                            Color.LightGray, Color.LightGray, 1)
+                        { Solid = false };
 
-                    var frame = new Rectangle(
-                        startPoint, e.Location,
-                        Color.LightGray, Color.LightGray, 1)
-                    { Solid = false };
+                        foreach (var s in shapes)
+                            s.IsSelect = frame.ContainsPoint(s.CenterPoint);
 
-                    foreach (var s in shapes)
-                        s.IsSelect = frame.ContainsPoint(s.CenterPoint);
-
-                    using (var g = Canvas.CreateGraphics())
-                        frame.DrawShape(g);
-
-                    break;
-
-                case Tool.MoveShape:
-
-                    foreach (var s in selectShapes)
-                        s.Move(e.Location.X - startPoint.X,
-                               e.Location.Y - startPoint.Y);
-                    startPoint = e.Location;
+                        using (var g = Canvas.CreateGraphics())
+                            frame.DrawShape(g);
+                    }
+                    else if (e.Button == MouseButtons.Right && moving)
+                    {
+                        foreach (var s in selectShapes)
+                            s.Move(e.Location.X - startPoint.X,
+                                   e.Location.Y - startPoint.Y);
+                        startPoint = e.Location;
+                    }
 
                     break;
 
@@ -435,25 +432,27 @@ namespace KP_Figures
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-                return;
-
             switch (selectTool)
             {
                 case Tool.DrawTriangle:
                     break;
 
-                case Tool.Select:
+                case Tool.Mouse:
 
-                    if (!selectMultiple)
-                        break;
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        if (!selectMultiple)
+                            break;
 
-                    selectShapes = shapes
-                        .Where(c => c.IsSelect)
-                        .ToList();
+                        selectShapes = shapes
+                            .Where(c => c.IsSelect)
+                            .ToList();
 
-                    canvasTrackingMouse = false;
-                    selectMultiple = false;
+                        canvasTrackingMouse = false;
+                        selectMultiple = false;
+                    }
+                    else
+                        moving = false;
 
                     break;
 
