@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace Shapes
 {
+    [Serializable]
     public class RectangleBased : Shape
     {
         protected RectangleBased(Color fill, Color line, int width)

@@ -35,6 +35,8 @@ namespace KP_Figures
             typeof(Panel)
                 .GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
                 .SetValue(Canvas, true);
+
+            
         }
 
         private void AddShape(Shape shape)
@@ -388,7 +390,7 @@ namespace KP_Figures
                     {
                         var frame = new Rectangle(
                             startPoint, e.Location,
-                            Color.LightGray, Color.LightGray, 1)
+                            Color.Gray, Color.Gray, 1)
                         { Solid = false };
 
                         foreach (var s in shapes)
@@ -448,11 +450,11 @@ namespace KP_Figures
                             .Where(c => c.IsSelect)
                             .ToList();
 
-                        canvasTrackingMouse = false;
                         selectMultiple = false;
                     }
-                    else
-                        moving = false;
+
+                    canvasTrackingMouse = false;
+                    moving = false;
 
                     break;
 

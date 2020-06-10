@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace Shapes
 {
+    [Serializable]
     public class EllipseBased : Shape
     {
         protected EllipseBased(Color fill, Color line, int w)
