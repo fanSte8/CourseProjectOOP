@@ -253,7 +253,7 @@
             this.selectShpaeToolStripMenuItem.Name = "selectShpaeToolStripMenuItem";
             this.selectShpaeToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
             this.selectShpaeToolStripMenuItem.Text = "Select/Move";
-            this.selectShpaeToolStripMenuItem.Click += new System.EventHandler(this.SelectShpaeToolStripMenuItem_Click);
+            this.selectShpaeToolStripMenuItem.Click += new System.EventHandler(this.SelectShapeToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 

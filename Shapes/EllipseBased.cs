@@ -10,8 +10,11 @@ namespace Shapes
     [Serializable]
     public class EllipseBased : Shape
     {
-        protected EllipseBased(Color fill, Color line, int w)
-            :base(fill, line, w) {}
+        protected EllipseBased(Point center, Color fill, Color line, int w)
+            :base(fill, line, w) 
+        {
+            CenterPoint = center;
+        }
 
         public override double Area
         {

@@ -16,8 +16,7 @@ namespace KP_Figures
             if (!ClosedContour(polygonPoints))
                 return (ShapeType.None, null);
 
-            if (!CreateBitmap(canvasWidth, canvasHeigth, polygonPoints))
-                return (ShapeType.None, null);
+            CreateBitmap(canvasWidth, canvasHeigth, polygonPoints);
 
             Image<Bgr, byte> img = new Image<Bgr, byte>(@"IMAGE.bmp");
             Image<Gray, byte> processed = img
@@ -63,11 +62,8 @@ namespace KP_Figures
             return (ShapeType.None, null);
         }
 
-        private static bool CreateBitmap(int w, int h, List<Point> points)
+        private static void CreateBitmap(int w, int h, List<Point> points)
         {
-            if (points.Count <= 1)
-                return false;
-
             Bitmap bmp = new Bitmap(w, h);
 
             using (var g = Graphics.FromImage(bmp))
@@ -81,7 +77,6 @@ namespace KP_Figures
             }
 
             bmp.Save("IMAGE.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
-            return true;
         }
 
         private static bool ClosedContour(List<Point> points)
@@ -181,7 +176,7 @@ namespace KP_Figures
                     sortedPoints[3] = p;
             }
 
-            if (sortedPoints.Any(c => c == new Point(-1, -1)))
+            if (sortedPoints.Any(c => c.X == -1 || c.Y == -1))
                 return (ShapeType.None, null);
 
             if (Math.Abs(sortedPoints[0].X - sortedPoints[1].X) > percision ||
@@ -203,8 +198,7 @@ namespace KP_Figures
             }
             
 
-            if (sideOne / sideTwo < 1 + squareThreshold &&
-                sideOne / sideTwo > 1 - squareThreshold)
+            if (sideOne / sideTwo > 1 - squareThreshold)
             {
                 return (ShapeType.Square, rectanglePoints);
             }

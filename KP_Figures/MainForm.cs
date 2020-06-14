@@ -82,7 +82,7 @@ namespace KP_Figures
                 item.DrawShape(e.Graphics);
         }
 
-        //Buttons
+        #region Buttons
 
         private void drawSquare_MouseDown(object sender, MouseEventArgs e)
         {
@@ -185,9 +185,10 @@ namespace KP_Figures
             UpdateForm();
         }
 
-        //Tool strip menu items
+        #endregion
+        #region Tool strip menu items
 
-        private void SelectShpaeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SelectShapeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectTool = Tool.Mouse;
         }
@@ -230,7 +231,8 @@ namespace KP_Figures
             UpdateForm();
         }
 
-        //Events
+        #endregion
+        # region Events
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
@@ -359,8 +361,8 @@ namespace KP_Figures
                         {
                             using (var pen = new Pen(lineColor, lineWidth))
                                 g.DrawLine(pen,
-                                    trianglePoints[0].X, trianglePoints[0].Y,
-                                    e.Location.X, e.Location.Y);
+                                    trianglePoints[0],
+                                    e.Location);
                         }
                         else if (trianglePoints.Count == 2)
                         {
@@ -528,5 +530,7 @@ namespace KP_Figures
 
             UpdateForm();
         }
+
+        #endregion
     }
 }

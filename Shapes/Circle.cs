@@ -25,13 +25,11 @@ namespace Shapes
         public Circle
             (Point center, Point perimeter,
              Color fill, Color line, int w)
-            :base(fill, line, w)
+            :base(center, fill, line, w)
         {
             Radius = Math.Sqrt(
                 Math.Pow(center.X - perimeter.X, 2) +
                 Math.Pow(center.Y - perimeter.Y, 2));
-
-            CenterPoint = center;
 
             Type = ShapeType.Circle;
         }
@@ -39,10 +37,9 @@ namespace Shapes
         public Circle(
             Point center, double radius,
             Color fill, Color line, int w)
-            :base(fill, line, w)
+            :base(center, fill, line, w)
         {
             Radius = radius;
-            CenterPoint = center;
 
             Type = ShapeType.Circle;
         }

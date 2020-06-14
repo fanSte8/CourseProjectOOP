@@ -39,12 +39,10 @@ namespace Shapes
         public Ellipse
             (Point center, Point bottomRight,
              Color fill, Color line, int w)
-            : base(fill, line, w)
+            : base(center, fill, line, w)
         {
             SemiXAxis = Math.Abs(bottomRight.X - center.X);
             SemiYAxis = Math.Abs(bottomRight.Y - center.Y);
-
-            CenterPoint = center;
 
             Type = ShapeType.Ellipse;
         }
@@ -53,12 +51,10 @@ namespace Shapes
             (Point center,
              double width, double heigth,
              Color fill, Color line, int w)
-            : base(fill, line, w)
+            : base(center, fill, line, w)
         {
             SemiXAxis = width / 2;
             SemiYAxis = heigth / 2;
-
-            CenterPoint = center;
 
             Type = ShapeType.Ellipse;
         }

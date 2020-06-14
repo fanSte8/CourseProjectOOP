@@ -48,7 +48,7 @@ namespace KP_Figures
             }
         }
 
-        public Shape Shape
+        private Shape Shape
         {
             get
             {
