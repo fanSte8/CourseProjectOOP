@@ -96,7 +96,7 @@ namespace KP_Figures
 
         private static (ShapeType, List<Point>) CircleOrEllipse(Point center, double perimeter, List<Point> points)
         {
-            double circleThreshold = 0.02;
+            double circleThreshold = 0.03;
             double maxDistance = 0;
             Point BRPoint = new Point(-1, -1);
 

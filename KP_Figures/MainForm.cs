@@ -35,8 +35,6 @@ namespace KP_Figures
             typeof(Panel)
                 .GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
                 .SetValue(Canvas, true);
-
-            
         }
 
         private void AddShape(Shape shape)
